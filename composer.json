@@ -1,0 +1,23 @@
+{
+    "name": "milantarami/nepali-calendar",
+    "description": "ok",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "milantarami",
+            "email": "milantarami.dev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MilanTarami\\NepaliCalendar\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
+    }
+
+}
