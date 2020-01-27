@@ -2,7 +2,7 @@
 
 namespace MilanTarami\NepaliCalendar\Traits;
 
-use MilanTarami\NepaliCalendar\NepaliCalendarException;
+use MilanTarami\NepaliCalendar\Exceptions\NepaliCalendarException;
 
 trait SetConfig {
 
@@ -11,10 +11,9 @@ trait SetConfig {
     */
     private function setIntitalConfig()
     {
-        $this->dateFormat = config('np_calendar.date_format');
-        $this->dateSeperator = config('np_calendar.date_seperator');
-        $this->returnType = config('np_calendar.return_type');
-        $this->lang = config('np_calendar.lang');
+        $this->dateFormat = config('nepali-calendar.date_format');
+        $this->returnType = config('nepali-calendar.return_type');
+        $this->lang = config('nepali-calendar.lang');
     }
 
     /**

@@ -14,10 +14,14 @@
     "autoload": {
         "psr-4": {
             "MilanTarami\\NepaliCalendar\\": "src/"
-        },
-        "files": [
-            "src/Helpers/helpers.php"
-        ]
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MilanTarami\\NepaliCalendar\\NepaliCalendarServiceProvider"
+            ]
+        }
     }
 
 }

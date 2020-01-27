@@ -6,13 +6,12 @@ use MilanTarami\NepaliCalendar\Traits\SetConfig;
 use MilanTarami\NepaliCalendar\Traits\CalendarMessage;
 use MilanTarami\NepaliCalendar\Interfaces\CalendarInterface;
 
-class Calendar implements CalendarInterface
+class NepaliCalendar implements CalendarInterface
 {
 
     use SetConfig, CalendarMessage;
 
     protected $dateFormat;
-    protected $dateSeperator;
     protected $returnType;
     protected $lang;
 
@@ -29,6 +28,31 @@ class Calendar implements CalendarInterface
     private function getDateInArray($date, $config = [])
     {
        $this->setUserConfig($config);
+    }
+
+    public function addDaysToBsDate($date, $days, $config = [])
+    {
+
+    }
+
+    public function addMonthToBsDate($date, $months, $config = [])
+    {
+
+    }
+
+    public function BS2AD($date, $config = [])
+    {
+
+    }
+
+    public function AD2BS($date, $config = [])
+    {
+
+    }
+
+    public function get()
+    {
+        dd($this->dateFormat);
     }
 
 

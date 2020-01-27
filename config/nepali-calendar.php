@@ -30,7 +30,10 @@
     'date_formats' => [
         'YYYY-MM-DD',
         'MM-DD-YYYY',
-        'DD-MM-YYYY'
+        'DD-MM-YYYY',
+        'YYYY/MM/DD',
+        'MM/DD/YYYY',
+        'DD/MM/YYYY'
     ],
 
     /**
