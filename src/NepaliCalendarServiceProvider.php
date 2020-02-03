@@ -26,13 +26,20 @@ class NepaliCalendarServiceProvider extends ServiceProvider
     public function boot()
     {
         if($this->app->runningInConsole()) {
-            $this->publishes([ __DIR__.'./../config/nepali-calendar.php' => config_path('nepali-calendar.php'), ],'nepali-calendar-config' );
+            $this->publishes([ __DIR__.'./../config/nepali-calendar.php' => config_path('nepali-calendar.php'), ],'nepali-calendar-config');
         }
 
         $this->app->bind('nepalicalendar', function(){
             return new NepaliCalendar();
         });
 
+        $this->app->bind(
+                    'MilanTarami\NepaliCalendar\Contracts\NepaliCalendarInterface',
+                    'MilanTarami\NepaliCalendar\NepaliCalendar'
+        );
+
         AliasLoader::getInstance()->alias('NepaliCalendar', 'MilanTarami\NepaliCalendar\Facades\NepaliCalendarFacade');
     }
+
+
 }

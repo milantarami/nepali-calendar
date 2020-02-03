@@ -8,11 +8,6 @@
     'date_format' => 'YYYY-MM-DD',
 
     /**
-     * DEFAULT date sepearator
-    */
-    'date_seperator' => '-',
-
-    /**
      * DEFAULT return type
      * return types
      * [ date, string, array ]
@@ -37,13 +32,40 @@
     ],
 
     /**
+     * Date Seperators
+    */
+    'date_seperators' => [
+        'YYYY-MM-DD' => '-',
+        'MM-DD-YYYY' => '-',
+        'DD-MM-YYYY' => '-',
+        'YYYY/MM/DD' => '/',
+        'MM/DD/YYYY' => '/',
+        'DD/MM/YYYY' => '/'
+    ],
+
+    /**
      * Supported Languages
     */
     'langs' => [
         'np',
         'en'
-    ]
+    ],
 
+    /**
+     * Supported return types
+    */
+    'return_types' => [
+        'array',
+        'string'
+    ],
+
+    /**
+     * Calendar Types
+    */
+    'calendar_types' => [
+        'BS',
+        'AD'
+    ]
 
 
   ];
