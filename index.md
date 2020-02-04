@@ -8,5 +8,6 @@
 </head>
 <body>
     Documentation
+    <a href="./docs/v1.md">V1 docs</a>
 </body>
 </html>
