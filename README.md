@@ -1,1 +1,1 @@
-# nepali-calendar
+# Nepali Calendar
