@@ -26,11 +26,18 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param int $days
      * @param array #config
-     * @return string|array
+     * @return date
     */
     public function addDaysToBsDate($date, $days, $config = [])
     {
         $this->setUserConfig($config);
+        $dateAd = CalendarFunction::bsToAd($date, $this->dateFormat, $this->dateSeperator)['AD_DATE'];
+        list($year, $month, $date) = CalendarFunction::getDateInArray($dateAd, $this->dateFormat, $this->dateSeperator);
+        $dateAd = CalendarFunction::dateResponseInFormat($year, $month, $date, 'YYYY-MM-DD', '-');
+        $newDateAd = date('Y-m-d', strtotime($dateAd . '+' . $days . ' days'));
+        $newDateBs = CalendarFunction::adToBs($newDateAd, 'YYYY-MM-DD', '-')['BS_DATE'];
+        list($year, $month, $date) = CalendarFunction::getDateInArray($newDateBs, 'YYYY-MM-DD', '-');
+        return CalendarFunction::dateResponseInFormat($year, $month, $date, $this->dateFormat, $this->dateSeperator);
     }
 
     /**
@@ -43,6 +50,13 @@ class NepaliCalendar implements NepaliCalendarInterface
     public function removeDaysToBsDate($date, $days, $config = [])
     {
         $this->setUserConfig($config);
+        $dateAd = CalendarFunction::bsToAd($date, $this->dateFormat, $this->dateSeperator)['AD_DATE'];
+        list($year, $month, $date) = CalendarFunction::getDateInArray($dateAd, $this->dateFormat, $this->dateSeperator);
+        $dateAd = CalendarFunction::dateResponseInFormat($year, $month, $date, 'YYYY-MM-DD', '-');
+        $newDateAd = date('Y-m-d', strtotime($dateAd . '-' . $days . ' days'));
+        $newDateBs = CalendarFunction::adToBs($newDateAd, 'YYYY-MM-DD', '-')['BS_DATE'];
+        list($year, $month, $date) = CalendarFunction::getDateInArray($newDateBs, 'YYYY-MM-DD', '-');
+        return CalendarFunction::dateResponseInFormat($year, $month, $date, $this->dateFormat, $this->dateSeperator);
     }
 
     /**
@@ -58,11 +72,11 @@ class NepaliCalendar implements NepaliCalendarInterface
         if (CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator)) {
             list($cYear, $cMonth, $cDate) = CalendarFunction::getDateInArray($date, $this->dateFormat, $this->dateSeperator);
             $cYearMonthData = CalendarFunction::getBsYearMonthData($cYear);
-            $totalMonths = ( $cYear * 12 ) + $cMonth + $months;
-            $rYear = (int)( $totalMonths / 12 );
-            $rMonth = ( $totalMonths % 12 ) == 0 ? 12 : ( $totalMonths % 12 );
+            $totalMonths = ($cYear * 12) + $cMonth + $months;
+            $rYear = (int)($totalMonths / 12);
+            $rMonth = ($totalMonths % 12) == 0 ? 12 : ($totalMonths % 12);
             $resBsYearMonthData = CalendarFunction::getBsYearMonthData($rYear);
-            if($cDate > $resBsYearMonthData[$rMonth]) {
+            if ($cDate > $resBsYearMonthData[$rMonth]) {
                 $rDate = $resBsYearMonthData[$rMonth];
             } else {
                 $rDate = $cDate;
@@ -84,11 +98,11 @@ class NepaliCalendar implements NepaliCalendarInterface
         if (CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator)) {
             list($cYear, $cMonth, $cDate) = CalendarFunction::getDateInArray($date, $this->dateFormat, $this->dateSeperator);
             $cYearMonthData = CalendarFunction::getBsYearMonthData($cYear);
-            $totalMonths = ( $cYear * 12 ) + $cMonth - $months;
-            $rYear = (int)( $totalMonths / 12 );
-            $rMonth = ( $totalMonths % 12 ) == 0 ? 12 : ( $totalMonths % 12 );
+            $totalMonths = ($cYear * 12) + $cMonth - $months;
+            $rYear = (int)($totalMonths / 12);
+            $rMonth = ($totalMonths % 12) == 0 ? 12 : ($totalMonths % 12);
             $resBsYearMonthData = CalendarFunction::getBsYearMonthData($rYear);
-            if($cDate > $resBsYearMonthData[$rMonth]) {
+            if ($cDate > $resBsYearMonthData[$rMonth]) {
                 $rDate = $resBsYearMonthData[$rMonth];
             } else {
                 $rDate = $cDate;
@@ -98,7 +112,7 @@ class NepaliCalendar implements NepaliCalendarInterface
     }
 
     /**
-     * Add months to BS Date
+     * days difference in two bs days
      * @param string $date
      * @param int $days
      * @param array #config
@@ -111,9 +125,28 @@ class NepaliCalendar implements NepaliCalendarInterface
         list($tYear, $tMonth, $tDate) = CalendarFunction::getDateInArray($toDate, $this->dateFormat, $this->dateSeperator);
         $fromDateBs = CalendarFunction::dateResponseInFormat($fYear, $fMonth, $fDate, 'YYYY-MM-DD', '-');
         $toDateBs = CalendarFunction::dateResponseInFormat($tYear, $tMonth, $tDate, 'YYYY-MM-DD', '-');
-        $fromDateAd = CalendarFunction::bsToAd($fromDateBs, 'YYYY-MM-DD', '-');
-        $toDateAd = CalendarFunction::bsToAd($toDateBs, 'YYYY-MM-DD', '-');
-        $daysDifference = (strtotime($toDate) - strtotime($fromDate)) / 60 / 60 / 24;
+        $fromDateAd = CalendarFunction::bsToAd($fromDateBs, 'YYYY-MM-DD', '-')['AD_DATE'];
+        $toDateAd = CalendarFunction::bsToAd($toDateBs, 'YYYY-MM-DD', '-')['AD_DATE'];
+        $daysDifference = (strtotime($toDateAd) - strtotime($fromDateAd)) / 60 / 60 / 24;
+        return $daysDifference;
+    }
+
+
+    /**
+     * days difference in two ad days
+     * @param string $date
+     * @param int $days
+     * @param array #config
+     * @return string|array
+    */
+    public function daysDifferenceInTwoAdDate($fromDate, $toDate, $config = [])
+    {
+        $this->setUserConfig($config);
+        list($fYear, $fMonth, $fDate) = CalendarFunction::getDateInArray($fromDate, $this->dateFormat, $this->dateSeperator);
+        list($tYear, $tMonth, $tDate) = CalendarFunction::getDateInArray($toDate, $this->dateFormat, $this->dateSeperator);
+        $fromDateAd = CalendarFunction::dateResponseInFormat($fYear, $fMonth, $fDate, 'YYYY-MM-DD', '-');
+        $toDateAd = CalendarFunction::dateResponseInFormat($tYear, $tMonth, $tDate, 'YYYY-MM-DD', '-');
+        $daysDifference = (strtotime($toDateAd) - strtotime($fromDateAd)) / 60 / 60 / 24;
         return $daysDifference;
     }
 
