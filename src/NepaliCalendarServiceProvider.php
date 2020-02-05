@@ -38,7 +38,7 @@ class NepaliCalendarServiceProvider extends ServiceProvider
                     'MilanTarami\NepaliCalendar\NepaliCalendar'
         );
 
-        AliasLoader::getInstance()->alias('NepaliCalendar', 'MilanTarami\NepaliCalendar\Facades\NepaliCalendarFacade');
+        AliasLoader::getInstance()->alias('NepaliCalendar', 'MilanTarami\NepaliCalendar\Facades\NepaliCalendar');
     }
 
 
