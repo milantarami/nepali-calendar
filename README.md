@@ -1,4 +1,4 @@
-# Number to words
+# Nepali Calendar
 
 ## Installation and setup
 
