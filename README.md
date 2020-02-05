@@ -113,7 +113,6 @@ This is the default contents of the configuration:
         'AD'
     ]
 
-
   ];
 
 ```
