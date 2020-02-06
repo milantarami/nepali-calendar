@@ -222,4 +222,18 @@ class NepaliCalendar implements NepaliCalendarInterface
         }
         return $output;
     }
+
+    public function dateExists($date,  $calendarType = 'BS', $dateFormat = 'YYYY-MM-DD')
+    {
+        $this->calendarType($calendarType);
+        if($this->checkDateFormat($dateFormat)) {
+            $dateSeperator = $this->getDateSeperator($dateFormat);
+            if($calendarType == 'BS') {
+                return CalendarFunction::isValidBsDate($date, $dateFormat, $dateSeperator);
+            }
+            elseif($calendarType == 'AD') {
+                return CalendarFunction::isValidAdDate($date, $dateFormat, $dateSeperator);
+            }
+        }
+    }
 }
