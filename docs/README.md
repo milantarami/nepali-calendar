@@ -1,4 +1,14 @@
-# Nepali Calendar
+<style>
+    #nc-title {
+        margin-bottom: 0; 
+        color: #42B983; 
+        text-decoration: none;
+    }
+    #nc-title:hover { 
+        text-decoration: none !important;
+    }
+</style>
+# <h1 id="nc-title">Nepali Calendar</h1>
 
 This repository contains a rewrite of <a href="https://github.com/amant/Nepali-Date-Convert/blob/master/php/nepali_calendar.php">Nepali_Calendar.php</a> by Aman Tuladhar, which is a DateConverter. And this package designed to give more features and code sharing via the composer ( a dependency manager for PHP). Check out the features added.
 
@@ -125,7 +135,7 @@ All changes to <strong><a href="https://github.com/milantarami/nepali-calendar">
 
 # Basic Usage
 
-## Basic Usage
+## ✔ Basic Usage
 
 Convert AD to BS
 ``` bash 
@@ -142,7 +152,7 @@ $bsDate = NepaliCalendar::AD2BS('20-10-2076', [
 ]);
 ```
 
-## Supported Date Formats
+## ✔ Supported Date Formats
 Only six date formats are currently supported as listed below. You need to pass the value as key value<br/><mark><b>'date_format' => 'YYYY/MM/DD'</b></mark> in optional param $config = []
 ``` bash
 'YYYY-MM-DD',
@@ -155,7 +165,7 @@ Only six date formats are currently supported as listed below. You need to pass 
 <strong>Note:</strong> default <i><b> date_format </b></i> is <i><b>'YYYY-MM-DD'</b></i>
 
 
-## Supported Return Types
+## ✔ Supported Return Types
 You need to pass the value as key value <mark><b>'return_type' => 'array'</b></mark> in optional param $config = []
 ``` bash 
 'string',
@@ -163,9 +173,7 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
 ```
 <strong>Note:</strong> default <i><b> return_type </b></i> is <i><b>string</b></i>
 
-## $config = [] as param
-
-## Methods Avaliable
+## ✔ Methods Avaliable
 <table width="100">
     <thead>
         <tr>
@@ -219,3 +227,8 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
         </tr>
     </tbody>
 </table>
+
+# Fork 🍴  on Github
+
+Created By Milan Tarami with 💖 love 
+
