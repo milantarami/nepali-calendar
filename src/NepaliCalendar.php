@@ -26,7 +26,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param int $days
      * @param array #config
-     * @return date
+     * @return string
     */
     public function addDaysToBsDate($date, $days, $config = [])
     {
