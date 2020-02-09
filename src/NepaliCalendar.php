@@ -26,7 +26,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param int $days
      * @param array #config
-     * @return date
+     * @return string
     */
     public function addDaysToBsDate($date, $days, $config = [])
     {
@@ -47,7 +47,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string|array
     */
-    public function removeDaysToBsDate($date, $days, $config = [])
+    public function removeDaysFromBsDate($date, $days, $config = [])
     {
         $this->setUserConfig($config);
         $dateAd = CalendarFunction::bsToAd($date, $this->dateFormat, $this->dateSeperator)['AD_DATE'];
@@ -92,7 +92,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string
     */
-    public function removeMonthsToBsDate($date, $months, $config = [])
+    public function removeMonthsFromBsDate($date, $months, $config = [])
     {
         $this->setUserConfig($config);
         if (CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator)) {
@@ -221,5 +221,31 @@ class NepaliCalendar implements NepaliCalendarInterface
             $output = $this->AD2BS($output);
         }
         return $output;
+    }
+
+    /**
+     * check is BS date exists in calendar
+     * Note: It support between date range
+     * @param string $date
+     * @param array $config
+     * @return bool
+    */
+    public function bsDateExists($date, $config = [])
+    {
+        $this->setUserConfig($config);
+        return CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator);
+    }
+
+    /**
+     * check is AD date exists in calendar
+     * Note: It support between date range
+     * @param string $date
+     * @param array $config
+     * @return bool
+    */
+    public function adDateExists($date, $config = [])
+    {
+        $this->setUserConfig($config);
+        return CalendarFunction::isValidAdDate($date, $this->dateFormat, $this->dateSeperator);
     }
 }

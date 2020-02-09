@@ -7,7 +7,6 @@ use MilanTarami\NepaliCalendar\Exceptions\NepaliCalendarException;
 
 trait setCalendarConfig
 {
-
     protected $dateFormat;
     protected $returnType;
     protected $lang;
@@ -107,9 +106,30 @@ trait setCalendarConfig
     */
     private function calendarType($calendarType)
     {
-        if(in_array($calendarType, config('nepali-calendar.calendar_types'))) {
+        if (in_array($calendarType, config('nepali-calendar.calendar_types'))) {
             return;
         }
         throw new NepaliCalendarException(CalendarMessage::E_UNSUPPORTED_CALENDAR_TYPE);
+    }
+
+    /**
+     * check date format
+    */
+    private function checkDateFormat($dateFormat)
+    {
+        if (in_array($dateFormat, config('nepali-calendar.date_formats'))) {
+            return true;
+        }
+        throw new NepaliCalendarException(sprintf(CalendarMessage::E_UNSUPPORTED_DATE_FORMAT, $dateFormat));
+    }
+
+    /**
+     * get a dateSeperator
+     * @param string
+     * @return string
+    */
+    private function getDateSeperator($dateFormat): string
+    {
+        return config('nepali-calendar.date_seperators')[$dateFormat];
     }
 }

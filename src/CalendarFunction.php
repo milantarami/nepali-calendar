@@ -10,7 +10,7 @@ use MilanTarami\NepaliCalendar\Exceptions\NepaliCalendarException;
 class CalendarFunction
 {
     const MIN_AD_YEAR = 1944;
-    const MAX_AD_YEAR = 2022;
+    const MAX_AD_YEAR = 2042;
     const MIN_BS_YEAR = 2000;
     const MAX_BS_YEAR = 2099;
 
@@ -70,21 +70,21 @@ class CalendarFunction
 
     /**
      * get BS year month data
+     * if ($returnType = NULL) than if bs year month data doesn't exists than it will return NULL
      * @param int $year
+     * @param NULL
      * @return array
      */
     public static function getBsYearMonthData($year)
     {
-        if($year >= self::MIN_BS_YEAR && $year <= self::MAX_BS_YEAR) {
-            foreach(BS::MONTH_DATA_FOR_YEAR as $key => $array) {
-                if($array[0] == $year) {
+        if ($year >= self::MIN_BS_YEAR && $year <= self::MAX_BS_YEAR) {
+            foreach (BS::MONTH_DATA_FOR_YEAR as $key => $array) {
+                if ($array[0] == $year) {
                     return $array;
                 }
             }
         }
-        throw new NepaliCalendarException(
-            sprintf(CalendarMessage::E_UNSUPPORTED_BS_YEAR_RANGE, self::MIN_AD_YEAR, self::MAX_BS_YEAR)
-        );
+        return null;
     }
 
     /**
@@ -93,16 +93,46 @@ class CalendarFunction
      * @param string $dateFormat
      * @param string $dateSeperator
     */
-    public static function isValidBsDate($bsDate, $dateFormat, $dateSeperator): bool
+    public static function isValidBsDate($date, $dateFormat, $dateSeperator): bool
     {
-        list($yyyy, $mm, $dd) = self::getDateInArray($bsDate, $dateFormat, $dateSeperator);
-        $bsYearData = self::getBsYearMonthData($yyyy);
-        if($mm > 0 && $mm <= 12) {
-            if($dd > 0 && $dd <= $bsYearData[$mm]) {
-                return true;
+        if (count(explode($dateSeperator, $date)) === 3) {
+            list($yyyy, $mm, $dd) = self::getDateInArray($date, $dateFormat, $dateSeperator);
+            $bsYearData = self::getBsYearMonthData($yyyy);
+            if ($bsYearData !== null) {
+                if ($mm > 0 && $mm < 13 && $dd > 0) {
+                    if ($dd <= $bsYearData[$mm]) {
+                        return true;
+                    }
+                }
             }
         }
-        throw new NepaliCalendarException(sprintf(CalendarMessage::E_INVALID_BS_DATE, $bsDate));
+        return false;
+    }
+
+    /**
+     * check is ad date is valid
+     * @param date $bsDate
+     * @param string $dateFormat
+     * @param string $dateSeperator
+    */
+    public static function isValidAdDate($date, $dateFormat, $dateSeperator)
+    {
+        if (count(explode($dateSeperator, $date)) === 3) {
+            list($yyyy, $mm, $dd) = self::getDateInArray($date, $dateFormat, $dateSeperator);
+            if ($yyyy >= self::MIN_AD_YEAR && $yyyy <= self::MAX_AD_YEAR) {
+                if ($mm > 0 && $mm < 13 && $dd > 0) {
+                    if (self::isAdYearLeapYear($yyyy)) {
+                        $monthMaxDateCount = AD::AD_MONTHS['leap_year'][$mm];
+                    } else {
+                        $monthMaxDateCount = AD::AD_MONTHS['year'][$mm];
+                    }
+                    if($dd <= $monthMaxDateCount) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 
