@@ -223,17 +223,29 @@ class NepaliCalendar implements NepaliCalendarInterface
         return $output;
     }
 
-    public function dateExists($date,  $calendarType = 'BS', $dateFormat = 'YYYY-MM-DD')
+    /**
+     * check is BS date exists in calendar
+     * Note: It support between date range
+     * @param string $date
+     * @param array $config
+     * @return bool
+    */
+    public function bsDateExists($date,  $config = [])
     {
-        $this->calendarType($calendarType);
-        if($this->checkDateFormat($dateFormat)) {
-            $dateSeperator = $this->getDateSeperator($dateFormat);
-            if($calendarType == 'BS') {
-                return CalendarFunction::isValidBsDate($date, $dateFormat, $dateSeperator);
-            }
-            elseif($calendarType == 'AD') {
-                return CalendarFunction::isValidAdDate($date, $dateFormat, $dateSeperator);
-            }
-        }
+        $this->setUserConfig($config);
+        return CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator);
+    }
+
+    /**
+     * check is AD date exists in calendar
+     * Note: It support between date range
+     * @param string $date
+     * @param array $config
+     * @return bool
+    */
+    public function adDateExists($date,  $config = [])
+    {
+        $this->setUserConfig($config);
+        return CalendarFunction::isValidAdDate($date, $this->dateFormat, $this->dateSeperator);
     }
 }

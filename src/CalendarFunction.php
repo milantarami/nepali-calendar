@@ -75,7 +75,7 @@ class CalendarFunction
      * @param NULL
      * @return array
      */
-    public static function getBsYearMonthData($year, $returnType = '')
+    public static function getBsYearMonthData($year)
     {
         if ($year >= self::MIN_BS_YEAR && $year <= self::MAX_BS_YEAR) {
             foreach (BS::MONTH_DATA_FOR_YEAR as $key => $array) {
@@ -84,13 +84,7 @@ class CalendarFunction
                 }
             }
         }
-        // '' must not be equal to NULL so, checking datatype strictly
-        elseif ($returnType === null) {
-            return null;
-        }
-        throw new NepaliCalendarException(
-            sprintf(CalendarMessage::E_UNSUPPORTED_BS_YEAR_RANGE, self::MIN_AD_YEAR, self::MAX_BS_YEAR)
-        );
+        return null;
     }
 
     /**
@@ -103,10 +97,8 @@ class CalendarFunction
     {
         if (count(explode($dateSeperator, $date)) === 3) {
             list($yyyy, $mm, $dd) = self::getDateInArray($date, $dateFormat, $dateSeperator);
-            $bsYearData = self::getBsYearMonthData($yyyy, null);
-            if ($bsYearData === null) {
-                return false;
-            } else {
+            $bsYearData = self::getBsYearMonthData($yyyy);
+            if ($bsYearData !== null) {
                 if ($mm > 0 && $mm < 13 && $dd > 0) {
                     if ($dd <= $bsYearData[$mm]) {
                         return true;
@@ -123,12 +115,22 @@ class CalendarFunction
      * @param string $dateFormat
      * @param string $dateSeperator
     */
-    public function isValidAdDate($date, $dateFormat, $dateSeperator)
+    public static function isValidAdDate($date, $dateFormat, $dateSeperator)
     {
         if (count(explode($dateSeperator, $date)) === 3) {
             list($yyyy, $mm, $dd) = self::getDateInArray($date, $dateFormat, $dateSeperator);
-
-
+            if ($yyyy >= self::MIN_AD_YEAR && $yyyy <= self::MAX_AD_YEAR) {
+                if ($mm > 0 && $mm < 13 && $dd > 0) {
+                    if (self::isAdYearLeapYear($yyyy)) {
+                        $monthMaxDateCount = AD::AD_MONTHS['leap_year'][$mm];
+                    } else {
+                        $monthMaxDateCount = AD::AD_MONTHS['year'][$mm];
+                    }
+                    if($dd <= $monthMaxDateCount) {
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
