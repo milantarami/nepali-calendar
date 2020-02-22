@@ -301,6 +301,7 @@ Supported calendar types is
             <td>today()</td>
             <td>
                 <li>@param <i>string</i> &nbsp;$calendarType</li>
+                 <li>@return <i>string</i></li>
             </td>
             <td>
                 Get current date
@@ -310,6 +311,7 @@ Supported calendar types is
             <td>tomorrow()</td>
             <td>
                 <li>@param <i>string</i> &nbsp;$calendarType</li>
+                <li>@return <i>string</i></li>
             </td>
             <td>
                 Get tomorrow date
@@ -319,6 +321,7 @@ Supported calendar types is
             <td>yesterday()</td>
             <td>
                 <li>@param <i>string</i> &nbsp;$calendarType</li>
+                <li>@return <i>string</i></li>
             </td>
             <td>
                 Get yesterday date
