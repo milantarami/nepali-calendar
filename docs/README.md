@@ -8,6 +8,7 @@
         text-decoration: none !important;
     }
 </style>
+
 # <h1 id="nc-title">Nepali Calendar</h1>
 
 This repository contains a rewrite of <a href="https://github.com/amant/Nepali-Date-Convert/blob/master/php/nepali_calendar.php">Nepali_Calendar.php</a> by Aman Tuladhar, which is a DateConverter. And this package designed to give more features and code sharing via the composer ( a dependency manager for PHP). Check out the features added.
@@ -16,29 +17,29 @@ This repository contains a rewrite of <a href="https://github.com/amant/Nepali-D
 
 You can install this package via composer using:
 
-``` bash
+```bash
 composer require milantarami/nepali-calendar
 ```
 
-The package will automatically register its service provider for laravel 5.5.* and above. <br>
+The package will automatically register its service provider for laravel 5.5.\* and above. <br>
 For below version need to register a service provider manually in <code>config/app.php</code>
 
-``` bash
+```bash
 'providers' => [
 
     /*
     * Package Service Providers...
     */
-    
-   MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class         
+
+   MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class
 
 ],
 ```
 
-The package will automatically load alias for laravel 5.5.* and above. <br>
+The package will automatically load alias for laravel 5.5.\* and above. <br>
 For below version need to add alias manually in <code>config/app.php</code>
 
-``` bash
+```bash
 'aliases' => [
     .
     .
@@ -49,13 +50,13 @@ For below version need to add alias manually in <code>config/app.php</code>
 
 To publish the config file to <code>config/number_to_words.php</code> run:
 
-``` bash
+```bash
 php artisan vendor:publish --tag=nepali-calendar-config
 ```
 
 This is the default contents of the configuration:
 
-``` bash
+```bash
 <?php
 
   return [
@@ -138,7 +139,8 @@ All changes to <strong><a href="https://github.com/milantarami/nepali-calendar">
 ## ✔ Basic Usage
 
 Convert AD to BS
-``` bash 
+
+```bash
 use MilanTarami\NepaliCalendar\Facades\NepaliCalendar;
 
 $bsDate = NepaliCalendar::AD2BS('2076-10-20');
@@ -146,15 +148,18 @@ $bsDate = NepaliCalendar::AD2BS('2076-10-20');
 
 <strong>Note :</strong> <i>The default date format is</i> <mark>YYYY-MM-DD</mark> <i> if your date format differ than you need to provide a date format</i>
 </i>
-``` bash 
+
+```bash
 $bsDate = NepaliCalendar::AD2BS('20-10-2076', [
     'date_format' => 'DD-MM-YYYY'
 ]);
 ```
 
 ## ✔ Supported Date Formats
-Only six date formats are currently supported as listed below. You need to pass the value as key value<br/><mark><b>'date_format' => 'YYYY/MM/DD'</b></mark> in optional param $config = []
-``` bash
+
+Only six date formats are currently supported as listed below. You need to pass the value as key value<br/><mark><b>'date_format' => 'YYYY/MM/DD'</b></mark> in optional param \$config = []
+
+```bash
 'YYYY-MM-DD',
 'MM-DD-YYYY',
 'DD-MM-YYYY',
@@ -162,23 +167,38 @@ Only six date formats are currently supported as listed below. You need to pass 
 'MM/DD/YYYY',
 'DD/MM/YYYY'
 ```
+
 <strong>Note:</strong> default <i><b> date_format </b></i> is <i><b>'YYYY-MM-DD'</b></i>
 
-
 ## ✔ Supported Return Types
-You need to pass the value as key value <mark><b>'return_type' => 'array'</b></mark> in optional param $config = []
-``` bash 
+
+You need to pass the value as key value <mark><b>'return_type' => 'array'</b></mark> in optional param \$config = []
+
+```bash
 'string',
 'array'
 ```
+
 <strong>Note:</strong> default <i><b> return_type </b></i> is <i><b>string</b></i>
 
+##  ✔ Calendar Types
+
+Supported calendar types is 
+
+```bash
+'BS',
+'AD'
+```
+
+<strong>Note:</strong> default <i><b> $caledarType </b></i> is <i><b>BS</b></i>
+
 ## ✔ Methods Avaliable
+
 <table width="100">
     <thead>
         <tr>
             <th>Function</th>
-            <th>Parameter</th>
+            <th style="width: 250px;">Parameter</th>
             <th>Description</th>
         </tr>
     </thead>
@@ -186,9 +206,9 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
         <tr>
             <td>AD2BS()</td>
             <td>
-                <li>@param string $date</li>
-                <li>@param array $config</li>
-                <li>@return string|array </li>
+                <li>@param <i>string</i> &nbsp;$date</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>string</i>|<i>array</i> </li>
             </td>
             <td>
                 Convert AD date to equivalent BS date
@@ -197,9 +217,9 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
         <tr>
             <td>BS2AD()</td>
             <td>
-                <li>@param string $date</li>
-                <li>@param array $config</li>
-                <li>@return string|array </li>
+                <li>@param <i>string</i> &nbsp;$date</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>string</i>|<i>array</i> </li>
             </td>
             <td>
                 Convert BS date to equivalent AD date
@@ -207,28 +227,105 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
         </tr>
         <tr>
             <td>addMonthsToBsDate()</td>
-            <td></td>
-            <td></td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$date</li>
+                <li>@param <i>int</i> &nbsp;$months</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>string</i></li>
+            </td>
+            <td>
+               Add number of months to a given BS date
+            </td>
+        </tr>
+                <tr>
+            <td>removeMonthsFromBsDate()</td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$date</li>
+                <li>@param <i>int</i> &nbsp;$months</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>string</i></li>
+            </td>
+            <td>
+               Subtract number of months from a given BS date
+            </td>
+        </tr>
+        <tr>
+            <td>addDaysToBsDate()</td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$date</li>
+                <li>@param <i>int</i> &nbsp;$days</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>string</i></li>
+            </td>
+            <td>
+               Add number of days to given BS date
+            </td>
+        </tr>
+        <tr>
+            <td>removeDaysFromBsDate()</td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$date</li>
+                <li>@param <i>int</i> &nbsp;$days</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>string</i></li>
+            </td>
+            <td>
+               Subtract number of days from given BS date
+            </td>
+        </tr>
+        <tr>
+            <td>daysDifferenceInTwoBsDate()</td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$fromDateBS</li>
+                <li>@param <i>string</i> &nbsp;$toDateBS</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>int</i></li>
+            </td>
+            <td>
+               get days difference between two BS days
+            </td>
+        </tr>
+        <tr>
+            <td>daysDifferenceInTwoAdDate()</td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$fromDateAD</li>
+                <li>@param <i>string</i> &nbsp;$toDateAD</li>
+                <li>@param <i>array</i> &nbsp;$config</li>
+                <li>@return <i>int</i></li>
+            </td>
+            <td>
+               get days difference between two AD days
+            </td>
         </tr>
         <tr>
             <td>today()</td>
-            <td></td>
-            <td></td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$calendarType</li>
+            </td>
+            <td>
+                Get current date
+            </td>
         </tr>
         <tr>
             <td>tomorrow()</td>
-            <td></td>
-            <td></td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$calendarType</li>
+            </td>
+            <td>
+                Get tomorrow date
+            </td>
         </tr>
         <tr>
             <td>yesterday()</td>
-            <td></td>
-            <td></td>
+            <td>
+                <li>@param <i>string</i> &nbsp;$calendarType</li>
+            </td>
+            <td>
+                Get yesterday date
+            </td>
         </tr>
     </tbody>
 </table>
 
-# Fork 🍴  on Github
 
-Created By Milan Tarami with 💖 love 
-
+# Created By Milan Tarami with 💖 love
