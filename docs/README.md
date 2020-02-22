@@ -13,7 +13,7 @@
 
 This repository contains a rewrite of <a href="https://github.com/amant/Nepali-Date-Convert/blob/master/php/nepali_calendar.php">Nepali_Calendar.php</a> by Aman Tuladhar, which is a DateConverter. And this package designed to give more features and code sharing via the composer ( a dependency manager for PHP). Check out the features added.
 
-# Installation in Laravel
+# Installation & Configuration
 
 You can install this package via composer using:
 
