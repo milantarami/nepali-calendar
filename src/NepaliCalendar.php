@@ -25,7 +25,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * Add days to BS Date
      * @param string $date
      * @param int $days
-     * @param array #config
+     * @param array $config
      * @return string
     */
     public function addDaysToBsDate(string $date, int $days, array $config = [])
@@ -44,7 +44,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * remove days from BS Date
      * @param string $date
      * @param int $days
-     * @param array #config
+     * @param array $config
      * @return string|array
     */
     public function removeDaysFromBsDate(string $date, int $days, array $config = [])
@@ -63,7 +63,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * Add months to BS Date
      * @param string $date
      * @param int $days
-     * @param array #config
+     * @param array $config
      * @return string
     */
     public function addMonthsToBsDate(string $date, int $months, array $config = [])
@@ -89,7 +89,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * Add months to BS Date
      * @param string $date
      * @param int $days
-     * @param array #config
+     * @param array $config
      * @return string
     */
     public function removeMonthsFromBsDate(string $date, int $months, array $config = [])
@@ -115,7 +115,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * days difference in two bs days
      * @param string $date
      * @param int $days
-     * @param array #config
+     * @param array $config
      * @return string|array
     */
     public function daysDifferenceInTwoBsDate(string $fromDate, string $toDate, array $config = [])
@@ -136,7 +136,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * days difference in two ad days
      * @param string $date
      * @param int $days
-     * @param array #config
+     * @param array $config
      * @return string|array
     */
     public function daysDifferenceInTwoAdDate(string $fromDate, string $toDate, array $config = [])
