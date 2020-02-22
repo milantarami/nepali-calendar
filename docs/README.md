@@ -6,29 +6,29 @@ This repository contains a rewrite of <a href="https://github.com/amant/Nepali-D
 
 You can install this package via composer using:
 
-``` bash
+```bash
 composer require milantarami/nepali-calendar
 ```
 
-The package will automatically register its service provider for laravel 5.5.* and above. <br>
+The package will automatically register its service provider for laravel 5.5.\* and above. <br>
 For below version need to register a service provider manually in <code>config/app.php</code>
 
-``` bash
+```bash
 'providers' => [
 
     /*
     * Package Service Providers...
     */
-    
-   MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class         
+
+   MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class
 
 ],
 ```
 
-The package will automatically load alias for laravel 5.5.* and above. <br>
+The package will automatically load alias for laravel 5.5.\* and above. <br>
 For below version need to add alias manually in <code>config/app.php</code>
 
-``` bash
+```bash
 'aliases' => [
     .
     .
@@ -39,13 +39,13 @@ For below version need to add alias manually in <code>config/app.php</code>
 
 To publish the config file to <code>config/number_to_words.php</code> run:
 
-``` bash
+```bash
 php artisan vendor:publish --tag=nepali-calendar-config
 ```
 
 This is the default contents of the configuration:
 
-``` bash
+```bash
 <?php
 
   return [
@@ -128,7 +128,8 @@ All changes to <strong><a href="https://github.com/milantarami/nepali-calendar">
 ## Basic Usage
 
 Convert AD to BS
-``` bash 
+
+```bash
 use MilanTarami\NepaliCalendar\Facades\NepaliCalendar;
 
 $bsDate = NepaliCalendar::AD2BS('2076-10-20');
@@ -136,15 +137,18 @@ $bsDate = NepaliCalendar::AD2BS('2076-10-20');
 
 <strong>Note :</strong> <i>The default date format is</i> <mark>YYYY-MM-DD</mark> <i> if your date format differ than you need to provide a date format</i>
 </i>
-``` bash 
+
+```bash
 $bsDate = NepaliCalendar::AD2BS('20-10-2076', [
     'date_format' => 'DD-MM-YYYY'
 ]);
 ```
 
 ## Supported Date Formats
-Only six date formats are currently supported as listed below. You need to pass the value as key value<br/><mark><b>'date_format' => 'YYYY/MM/DD'</b></mark> in optional param $config = []
-``` bash
+
+Only six date formats are currently supported as listed below. You need to pass the value as key value<br/><mark><b>'date_format' => 'YYYY/MM/DD'</b></mark> in optional param \$config = []
+
+```bash
 'YYYY-MM-DD',
 'MM-DD-YYYY',
 'DD-MM-YYYY',
@@ -152,20 +156,24 @@ Only six date formats are currently supported as listed below. You need to pass 
 'MM/DD/YYYY',
 'DD/MM/YYYY'
 ```
+
 <strong>Note:</strong> default <i><b> date_format </b></i> is <i><b>'YYYY-MM-DD'</b></i>
 
-
 ## Supported Return Types
-You need to pass the value as key value <mark><b>'return_type' => 'array'</b></mark> in optional param $config = []
-``` bash 
+
+You need to pass the value as key value <mark><b>'return_type' => 'array'</b></mark> in optional param \$config = []
+
+```bash
 'string',
 'array'
 ```
+
 <strong>Note:</strong> default <i><b> return_type </b></i> is <i><b>string</b></i>
 
-## $config = [] as param
+## \$config = [] as param
 
 ## Methods Avaliable
+
 <table width="100">
     <thead>
         <tr>
@@ -199,7 +207,9 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
         </tr>
         <tr>
             <td>addMonthsToBsDate()</td>
-            <td></td>
+            <td>
+                <li></li>
+            </td>
             <td></td>
         </tr>
         <tr>
