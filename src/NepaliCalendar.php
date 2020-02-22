@@ -28,7 +28,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string
     */
-    public function addDaysToBsDate($date, $days, $config = [])
+    public function addDaysToBsDate(string $date, int $days, array $config = [])
     {
         $this->setUserConfig($config);
         $dateAd = CalendarFunction::bsToAd($date, $this->dateFormat, $this->dateSeperator)['AD_DATE'];
@@ -47,7 +47,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string|array
     */
-    public function removeDaysFromBsDate($date, $days, $config = [])
+    public function removeDaysFromBsDate(string $date, int $days, array $config = [])
     {
         $this->setUserConfig($config);
         $dateAd = CalendarFunction::bsToAd($date, $this->dateFormat, $this->dateSeperator)['AD_DATE'];
@@ -66,7 +66,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string
     */
-    public function addMonthsToBsDate($date, $months, $config = [])
+    public function addMonthsToBsDate(string $date, int $months, array $config = [])
     {
         $this->setUserConfig($config);
         if (CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator)) {
@@ -92,7 +92,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string
     */
-    public function removeMonthsFromBsDate($date, $months, $config = [])
+    public function removeMonthsFromBsDate(string $date, int $months, array $config = [])
     {
         $this->setUserConfig($config);
         if (CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator)) {
@@ -118,7 +118,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string|array
     */
-    public function daysDifferenceInTwoBsDate($fromDate, $toDate, $config = [])
+    public function daysDifferenceInTwoBsDate(string $fromDate, string $toDate, array $config = [])
     {
         $this->setUserConfig($config);
         list($fYear, $fMonth, $fDate) = CalendarFunction::getDateInArray($fromDate, $this->dateFormat, $this->dateSeperator);
@@ -139,7 +139,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array #config
      * @return string|array
     */
-    public function daysDifferenceInTwoAdDate($fromDate, $toDate, $config = [])
+    public function daysDifferenceInTwoAdDate(string $fromDate, string $toDate, array $config = [])
     {
         $this->setUserConfig($config);
         list($fYear, $fMonth, $fDate) = CalendarFunction::getDateInArray($fromDate, $this->dateFormat, $this->dateSeperator);
@@ -156,7 +156,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array $config
      * @return string|array
     */
-    public function BS2AD($date, $config = [])
+    public function BS2AD(string $date, array $config = [])
     {
         $this->setUserConfig($config);
         $data = CalendarFunction::bsToAd($date, $this->dateFormat, $this->dateSeperator);
@@ -169,7 +169,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array $config
      * @return string|array
     */
-    public function AD2BS($date, $config = [])
+    public function AD2BS(string $date, array $config = [])
     {
         $this->setUserConfig($config);
         $data = CalendarFunction::adToBs($date, $this->dateFormat, $this->dateSeperator);
@@ -181,7 +181,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $calendarType
      * @return string
     */
-    public function today($calendarType = 'BS')
+    public function today(string $calendarType = 'BS')
     {
         $this->calendarType($calendarType);
         $output = date('Y-m-d');
@@ -196,7 +196,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $calendarType
      * @return string
     */
-    public function yesterday($calendarType = 'BS')
+    public function yesterday(string $calendarType = 'BS')
     {
         $this->calendarType($calendarType);
         $adDate = date('Y-m-d');
@@ -212,7 +212,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $calendarType
      * @return string
     */
-    public function tomorrow($calendarType = 'BS')
+    public function tomorrow(string $calendarType = 'BS')
     {
         $this->calendarType($calendarType);
         $adDate = date('Y-m-d');
@@ -230,7 +230,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array $config
      * @return bool
     */
-    public function bsDateExists($date, $config = [])
+    public function bsDateExists(string $date, array $config = [])
     {
         $this->setUserConfig($config);
         return CalendarFunction::isValidBsDate($date, $this->dateFormat, $this->dateSeperator);
@@ -243,7 +243,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param array $config
      * @return bool
     */
-    public function adDateExists($date, $config = [])
+    public function adDateExists(string $date, array $config = [])
     {
         $this->setUserConfig($config);
         return CalendarFunction::isValidAdDate($date, $this->dateFormat, $this->dateSeperator);
