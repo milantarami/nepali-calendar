@@ -9,10 +9,10 @@ class NepaliCalendarTest extends TestCase
 {
 
     /** @test */
-    public function daysCountIncludingBsDates()
+    public function daysCountBetweenIncludingBsDates()
     {
-        $adDate = NepaliCalendar::daysCountIncludingBsDates('2076-12-10', '2076-12-20');
-        $this->assertTrue(true, 'days count');
+        $daysCount = NepaliCalendar::daysCountBetweenIncludingBsDates('2076-12-10', '2076-12-20');
+        $this->assertTrue($daysCount == 11, 'days count');
     }
 
     /** @test */

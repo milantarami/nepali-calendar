@@ -259,9 +259,9 @@ class NepaliCalendar implements NepaliCalendarInterface
     public function daysCountBetweenIncludingBsDates(string $fromDate, string $toDate, array $config = []): int
     {
         $this->setUserConfig($config);
-        $daysCount = $this->daysDifferenceInTwoBsDate($fromDate, $toDate) + 1;
-        if ($daysCount > 0) {
-            return $daysCount;
+        $daysCount = $this->daysDifferenceInTwoBsDate($fromDate, $toDate);
+        if ($daysCount >= 0) {
+            return $daysCount + 1;
         }
         throw new NepaliCalendarException('From Date must be less than To Date');
     }
