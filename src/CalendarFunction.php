@@ -436,10 +436,10 @@ class CalendarFunction
                 return $time1 === $time2;
                 break;
             case '>':
-                return $time1 >= $time2;
+                return $time1 > $time2;
                 break;
             case '<':
-                return $time1 >= $time2;
+                return $time1 < $time2;
                 break;
             case '>=':
                 return $time1 >= $time2;

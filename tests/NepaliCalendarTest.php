@@ -11,15 +11,14 @@ class NepaliCalendarTest extends TestCase
     /** @test */
     public function daysCountBetweenIncludingBsDates()
     {
-        $daysCount = NepaliCalendar::daysCountBetweenIncludingBsDates('2076-11-24', '2076-11-24');
-        echo $daysCount;
-        $this->assertTrue($daysCount == 1, 'days count');
+        $daysCount = NepaliCalendar::daysCountBetweenIncludingBsDates('2076-12-10', '2076-12-20');
+        $this->assertTrue($daysCount == 11, 'days count');
     }
 
     /** @test */
     public function compareBsDates()
     {
-        $adDate = NepaliCalendar::compareBsDates('2076-11-24', '>', '2076-11-24');
+        $adDate = NepaliCalendar::compareBsDates('2076-12-10', '>', '2076-12-20');
         $this->assertTrue($adDate, 'days count');
     }
 
