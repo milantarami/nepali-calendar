@@ -18,8 +18,8 @@ class NepaliCalendarTest extends TestCase
     /** @test */
     public function compareBsDates()
     {
-        $adDate = NepaliCalendar::compareBsDates('2076-12-10', '<=', '2076-12-20');
-        $this->assertTrue(true, 'days count');
+        $adDate = NepaliCalendar::compareBsDates('2076-12-10', '>', '2076-12-20');
+        $this->assertTrue($adDate, 'days count');
     }
 
     /** @test */
