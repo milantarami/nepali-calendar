@@ -7,6 +7,21 @@ use Orchestra\Testbench\TestCase;
 
 class NepaliCalendarTest extends TestCase
 {
+
+    /** @test */
+    public function daysCountIncludingBsDates()
+    {
+        $adDate = NepaliCalendar::daysCountIncludingBsDates('2076-12-10', '2076-12-20');
+        $this->assertTrue(true, 'days count');
+    }
+
+    /** @test */
+    public function compareBsDates()
+    {
+        $adDate = NepaliCalendar::compareBsDates('2076-12-10', '<=', '2076-12-20');
+        $this->assertTrue(true, 'days count');
+    }
+
     /** @test */
     public function AD2BS()
     {
@@ -19,7 +34,6 @@ class NepaliCalendarTest extends TestCase
     {
         NepaliCalendar::adDateExists('202020');
         $this->assertTrue(true, 'ad date exists');
-
     }
 
 

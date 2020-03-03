@@ -15,20 +15,20 @@ class CalendarFunction
     const MAX_BS_YEAR = 2099;
 
     /**
-    * Get a date in array format
-    * @param string $date
-    * @param string $dateFormat
-    * @param string $dateSeperator
-    * @return array ['YYYY', 'MM', 'DD']
-    */
+     * Get a date in array format
+     * @param string $date
+     * @param string $dateFormat
+     * @param string $dateSeperator
+     * @return array ['YYYY', 'MM', 'DD']
+     */
     public static function getDateInArray($date, $dateFormat, $dateSeperator)
     {
         $dateSegregated = explode($dateSeperator, $date);
         $dateFormatSegregated = explode($dateSeperator, $dateFormat);
         $dateInArray = [
-            $dateFormatSegregated[0] => (int)$dateSegregated[0],
-            $dateFormatSegregated[1] => (int)$dateSegregated[1],
-            $dateFormatSegregated[2] => (int)$dateSegregated[2]
+            $dateFormatSegregated[0] => (int) $dateSegregated[0],
+            $dateFormatSegregated[1] => (int) $dateSegregated[1],
+            $dateFormatSegregated[2] => (int) $dateSegregated[2]
         ];
         return [$dateInArray['YYYY'], $dateInArray['MM'], $dateInArray['DD']];
     }
@@ -41,7 +41,7 @@ class CalendarFunction
      * @param string $dateFormat
      * @param string $dateSeperator
      * @return string
-    */
+     */
     public static function dateResponseInFormat($YYYY, $MM, $DD, $dateFormat, $dateSeperator)
     {
         $dateInArray = [
@@ -51,21 +51,21 @@ class CalendarFunction
         ];
         $dateFormatSegregated = explode($dateSeperator, $dateFormat);
         return $dateInArray[$dateFormatSegregated[0]] . $dateSeperator .
-               $dateInArray[$dateFormatSegregated[1]] . $dateSeperator .
-               $dateInArray[$dateFormatSegregated[2]];
+            $dateInArray[$dateFormatSegregated[1]] . $dateSeperator .
+            $dateInArray[$dateFormatSegregated[2]];
     }
 
     /**
      * pad zero before number if less than 10
      * @param int $number
      * @return string
-    */
+     */
     private static function padZero($number)
     {
         if ($number < 10) {
-            return (string)str_pad($number, 2, '0', STR_PAD_LEFT);
+            return (string) str_pad($number, 2, '0', STR_PAD_LEFT);
         }
-        return (string)$number;
+        return (string) $number;
     }
 
     /**
@@ -92,7 +92,7 @@ class CalendarFunction
      * @param date $bsDate
      * @param string $dateFormat
      * @param string $dateSeperator
-    */
+     */
     public static function isValidBsDate($date, $dateFormat, $dateSeperator): bool
     {
         if (count(explode($dateSeperator, $date)) === 3) {
@@ -114,7 +114,7 @@ class CalendarFunction
      * @param date $bsDate
      * @param string $dateFormat
      * @param string $dateSeperator
-    */
+     */
     public static function isValidAdDate($date, $dateFormat, $dateSeperator)
     {
         if (count(explode($dateSeperator, $date)) === 3) {
@@ -126,7 +126,7 @@ class CalendarFunction
                     } else {
                         $monthMaxDateCount = AD::AD_MONTHS['year'][$mm];
                     }
-                    if($dd <= $monthMaxDateCount) {
+                    if ($dd <= $monthMaxDateCount) {
                         return true;
                     }
                 }
@@ -189,7 +189,7 @@ class CalendarFunction
      * Check whether AD Year is Leap Year
      * @param int $year
      * @return bool
-    */
+     */
     private static function isAdYearLeapYear($year): bool
     {
         if ($year % 100 == 0) {
@@ -211,9 +211,9 @@ class CalendarFunction
     /**
      * currently can only calculate the date between AD 1944-2033...
      *
-     * @param int $yy
-     * @param int $mm
-     * @param int $dd
+     * @param string $adDate
+     * @param string $dateFormat
+     * @param string $dateSeperator
      * @return array
      */
     public static function adToBs($adDate, $dateFormat, $dateSeperator)
@@ -227,10 +227,10 @@ class CalendarFunction
             // Month for leap year
             $lmonth = array(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
-            $def_eyy     = 1944;	// initial english date.
+            $def_eyy     = 1944;    // initial english date.
             $def_nyy     = 2000;
             $def_nmm     = 9;
-            $def_ndd     = 17 - 1;	// inital nepali date.
+            $def_ndd     = 17 - 1;    // inital nepali date.
             $total_eDays = 0;
             $total_nDays = 0;
             $a           = 0;
@@ -242,17 +242,17 @@ class CalendarFunction
             $numDay      = 0;
 
             // Count total no. of days in-terms year
-                for ($i = 0; $i < ($yy - $def_eyy); $i++) { //total days for month calculation...(english)
-                    if (self::isAdYearLeapYear($def_eyy + $i) === true) {
-                        for ($j = 0; $j < 12; $j++) {
-                            $total_eDays += $lmonth[$j];
-                        }
-                    } else {
-                        for ($j = 0; $j < 12; $j++) {
-                            $total_eDays += $month[$j];
-                        }
+            for ($i = 0; $i < ($yy - $def_eyy); $i++) { //total days for month calculation...(english)
+                if (self::isAdYearLeapYear($def_eyy + $i) === true) {
+                    for ($j = 0; $j < 12; $j++) {
+                        $total_eDays += $lmonth[$j];
+                    }
+                } else {
+                    for ($j = 0; $j < 12; $j++) {
+                        $total_eDays += $month[$j];
                     }
                 }
+            }
 
             // Count total no. of days in-terms of month
             for ($i = 0; $i < ($mm - 1); $i++) {
@@ -277,14 +277,14 @@ class CalendarFunction
             while ($total_eDays != 0) {
                 $a = BS::MONTH_DATA_FOR_YEAR[$i][$j];
 
-                $total_nDays++;		//count the days
-                    $day++;				//count the days interms of 7 days
+                $total_nDays++;        //count the days
+                $day++;                //count the days interms of 7 days
 
-                    if ($total_nDays > $a) {
-                        $m++;
-                        $total_nDays = 1;
-                        $j++;
-                    }
+                if ($total_nDays > $a) {
+                    $m++;
+                    $total_nDays = 1;
+                    $j++;
+                }
 
                 if ($day > 7) {
                     $day = 1;
@@ -327,9 +327,9 @@ class CalendarFunction
     /**
      * Currently can only calculate the date between BS 2000-2089
      *
-     * @param int $yy
-     * @param int $mm
-     * @param int $dd
+     * @param string $bsDate
+     * @param string $dateFormat
+     * @param string $dateSeperator
      * @return array
      */
     public static function bsToAd($bsDate, $dateFormat, $dateSeperator)
@@ -338,10 +338,10 @@ class CalendarFunction
 
         $def_eyy     = 1943;
         $def_emm     = 4;
-        $def_edd     = 14 - 1;	// initial english date.
+        $def_edd     = 14 - 1;    // initial english date.
         $def_nyy     = 2000;
         $def_nmm     = 1;
-        $def_ndd     = 1;		// iniital equivalent nepali date.
+        $def_ndd     = 1;        // iniital equivalent nepali date.
         $total_eDays = 0;
         $total_nDays = 0;
         $a           = 0;
@@ -415,6 +415,40 @@ class CalendarFunction
             // $_eng_date['week_num_day'] = $numDay;
 
             return $_eng_date;
+        }
+    }
+
+    public static function daysCountIncludingBsDates($fromDate, $toDate, $dateFormat, $dateSeperator)
+    {
+        // $daysDifference =
+
+    }
+
+    public static function compareAdDates($date1, $date2, $comparisonOperator)
+    {
+        $time1 = strtotime($date1);
+        $time2 = strtotime($date2);
+        switch ($comparisonOperator) {
+            case '==':
+                return $time1 == $time2;
+                break;
+            case '===':
+                return $time1 === $time2;
+                break;
+            case '>=':
+                return $time1 >= $time2;
+                break;
+            case '<=':
+                return $time1 <= $time2;
+                break;
+            case '!==':
+                return $time1 !== $time2;
+                break;
+            case '<>':
+                return $time1 !== $time2;
+                break;
+            default:
+                throw new NepaliCalendarException('Copmarison Operator not supported !');
         }
     }
 }

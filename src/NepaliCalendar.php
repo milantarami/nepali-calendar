@@ -5,6 +5,7 @@ namespace MilanTarami\NepaliCalendar;
 use MilanTarami\NepaliCalendar\CalendarFunction;
 use MilanTarami\NepaliCalendar\Traits\setCalendarConfig;
 use MilanTarami\NepaliCalendar\Contracts\NepaliCalendarInterface;
+use MilanTarami\NepaliCalendar\Exceptions\NepaliCalendarException;
 
 class NepaliCalendar implements NepaliCalendarInterface
 {
@@ -27,7 +28,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param int $days
      * @param array #config
      * @return string
-    */
+     */
     public function addDaysToBsDate($date, $days, $config = [])
     {
         $this->setUserConfig($config);
@@ -46,7 +47,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param int $days
      * @param array #config
      * @return string|array
-    */
+     */
     public function removeDaysFromBsDate($date, $days, $config = [])
     {
         $this->setUserConfig($config);
@@ -65,7 +66,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param int $days
      * @param array #config
      * @return string
-    */
+     */
     public function addMonthsToBsDate($date, $months, $config = [])
     {
         $this->setUserConfig($config);
@@ -73,7 +74,7 @@ class NepaliCalendar implements NepaliCalendarInterface
             list($cYear, $cMonth, $cDate) = CalendarFunction::getDateInArray($date, $this->dateFormat, $this->dateSeperator);
             $cYearMonthData = CalendarFunction::getBsYearMonthData($cYear);
             $totalMonths = ($cYear * 12) + $cMonth + $months;
-            $rYear = (int)($totalMonths / 12);
+            $rYear = (int) ($totalMonths / 12);
             $rMonth = ($totalMonths % 12) == 0 ? 12 : ($totalMonths % 12);
             $resBsYearMonthData = CalendarFunction::getBsYearMonthData($rYear);
             if ($cDate > $resBsYearMonthData[$rMonth]) {
@@ -91,7 +92,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param int $days
      * @param array #config
      * @return string
-    */
+     */
     public function removeMonthsFromBsDate($date, $months, $config = [])
     {
         $this->setUserConfig($config);
@@ -99,7 +100,7 @@ class NepaliCalendar implements NepaliCalendarInterface
             list($cYear, $cMonth, $cDate) = CalendarFunction::getDateInArray($date, $this->dateFormat, $this->dateSeperator);
             $cYearMonthData = CalendarFunction::getBsYearMonthData($cYear);
             $totalMonths = ($cYear * 12) + $cMonth - $months;
-            $rYear = (int)($totalMonths / 12);
+            $rYear = (int) ($totalMonths / 12);
             $rMonth = ($totalMonths % 12) == 0 ? 12 : ($totalMonths % 12);
             $resBsYearMonthData = CalendarFunction::getBsYearMonthData($rYear);
             if ($cDate > $resBsYearMonthData[$rMonth]) {
@@ -113,11 +114,11 @@ class NepaliCalendar implements NepaliCalendarInterface
 
     /**
      * days difference in two bs days
-     * @param string $date
-     * @param int $days
-     * @param array #config
+     * @param string $fromDate
+     * @param string $toDate
+     * @param array $config
      * @return string|array
-    */
+     */
     public function daysDifferenceInTwoBsDate($fromDate, $toDate, $config = [])
     {
         $this->setUserConfig($config);
@@ -138,7 +139,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param int $days
      * @param array #config
      * @return string|array
-    */
+     */
     public function daysDifferenceInTwoAdDate($fromDate, $toDate, $config = [])
     {
         $this->setUserConfig($config);
@@ -155,7 +156,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param array $config
      * @return string|array
-    */
+     */
     public function BS2AD($date, $config = [])
     {
         $this->setUserConfig($config);
@@ -168,7 +169,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param array $config
      * @return string|array
-    */
+     */
     public function AD2BS($date, $config = [])
     {
         $this->setUserConfig($config);
@@ -180,7 +181,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * get today BS date
      * @param string $calendarType
      * @return string
-    */
+     */
     public function today($calendarType = 'BS')
     {
         $this->calendarType($calendarType);
@@ -195,7 +196,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * get yesterday BS date
      * @param string $calendarType
      * @return string
-    */
+     */
     public function yesterday($calendarType = 'BS')
     {
         $this->calendarType($calendarType);
@@ -211,7 +212,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * get tomorrow BS date
      * @param string $calendarType
      * @return string
-    */
+     */
     public function tomorrow($calendarType = 'BS')
     {
         $this->calendarType($calendarType);
@@ -229,7 +230,7 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param array $config
      * @return bool
-    */
+     */
     public function bsDateExists($date, $config = [])
     {
         $this->setUserConfig($config);
@@ -242,10 +243,42 @@ class NepaliCalendar implements NepaliCalendarInterface
      * @param string $date
      * @param array $config
      * @return bool
-    */
+     */
     public function adDateExists($date, $config = [])
     {
         $this->setUserConfig($config);
         return CalendarFunction::isValidAdDate($date, $this->dateFormat, $this->dateSeperator);
+    }
+
+    /**
+     * Count days fromDateBS to toDateBS including (fromDate day ) and (toDate day)
+     * @param string $fromDate
+     * @param string $toDate
+     * @return int
+     */
+    public function daysCountBetweenIncludingBsDates(string $fromDate, string $toDate, array $config = []): int
+    {
+        $this->setUserConfig($config);
+        $daysCount = $this->daysDifferenceInTwoBsDate($fromDate, $toDate) + 1;
+        if ($daysCount > 0) {
+            return $daysCount;
+        }
+        throw new NepaliCalendarException('From Date must be less than To Date');
+    }
+
+    /**
+     * compare BS dates
+     * @param string $date1
+     * @param string $comparisonOperator
+     * @param string $date2
+     * @param array $config ( optional )
+     * @return bool
+     */
+    public function compareBsDates(string $date1, string $comparisonOperator, string $date2, array $config = []): bool
+    {
+        $this->setUserConfig($config);
+        $date1 = $this->BS2AD($date1);
+        $date2 = $this->BS2AD($date2);
+        return CalendarFunction::compareAdDates($date1, $date2, $comparisonOperator);
     }
 }
