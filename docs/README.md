@@ -43,7 +43,7 @@ For below version need to add alias manually in <code>config/app.php</code>
 'aliases' => [
     .
     .
-    'NumberToWords' => MilanTarami\NepaliCalendar\Facades\NepaliCalendar::class,
+    'NepaliCalendar' => MilanTarami\NepaliCalendar\Facades\NepaliCalendar::class,
 
 ]
 ```
@@ -181,16 +181,16 @@ You need to pass the value as key value <mark><b>'return_type' => 'array'</b></m
 
 <strong>Note:</strong> default <i><b> return_type </b></i> is <i><b>string</b></i>
 
-##  ✔ Calendar Types
+## ✔ Calendar Types
 
-Supported calendar types is 
+Supported calendar types is
 
 ```bash
 'BS',
 'AD'
 ```
 
-<strong>Note:</strong> default <i><b> $caledarType </b></i> is <i><b>BS</b></i>
+<strong>Note:</strong> default <i><b> \$caledarType </b></i> is <i><b>BS</b></i>
 
 ## ✔ Methods Avaliable
 
@@ -329,6 +329,5 @@ Supported calendar types is
         </tr>
     </tbody>
 </table>
-
 
 # Created By Milan Tarami with 💖 love
