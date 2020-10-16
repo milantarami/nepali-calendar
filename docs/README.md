@@ -48,7 +48,7 @@ For below version need to add alias manually in <code>config/app.php</code>
 ]
 ```
 
-To publish the config file to <code>config/number_to_words.php</code> run:
+To publish the config file to <code>config/nepali-calendar.php</code> run:
 
 ```bash
 php artisan vendor:publish --tag=nepali-calendar-config
