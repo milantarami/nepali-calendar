@@ -19,7 +19,7 @@ class NepaliCalendarTest extends TestCase
     public function compareBsDates()
     {
         $adDate = NepaliCalendar::compareBsDates('2076-12-10', '>', '2076-12-20');
-        $this->assertTrue($adDate, 'days count');
+        $this->assertTrue($adDate === false, '2076-12-10 is less than 2076-12-20');
     }
 
     /** @test */
