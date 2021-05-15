@@ -10,31 +10,31 @@ trait setCalendarConfig
     protected $dateFormat;
     protected $returnType;
     protected $lang;
-    protected $dateSeperator;
+    protected $dateSeparator;
 
     /**
      * load a initial config from np_calendar config file
      * @return void
-    */
+     */
     private function setIntitalConfig(): void
     {
         $this->dateFormat = config('nepali-calendar.date_format');
         $this->returnType = config('nepali-calendar.return_type');
         $this->lang = config('nepali-calendar.lang');
-        $this->dateSeperator = config('nepali-calendar.date_seperators')[$this->dateFormat];
+        $this->dateSeparator = config('nepali-calendar.date_separators')[$this->dateFormat];
     }
 
     /**
      * Set config from user input
      * @param array $config
      * @return void
-    */
+     */
     private function setUserConfig($config = []): void
     {
         if (gettype($config) === 'array') {
             if (array_key_exists('date_format', $config)) {
                 $this->setDateFormat($config['date_format']);
-                $this->setDateSeperator();
+                $this->setDateSeparator();
             }
             if (array_key_exists('return_type', $config)) {
                 $this->setReturnType($config['return_type']);
@@ -51,7 +51,7 @@ trait setCalendarConfig
      * set a date format
      * @param string $value
      * @return void
-    */
+     */
     private function setDateFormat($dateFormat): void
     {
         if (in_array($dateFormat, config('nepali-calendar.date_formats'))) {
@@ -66,7 +66,7 @@ trait setCalendarConfig
      * set a return type
      * @param string $value
      * @return void
-    */
+     */
     private function setReturnType($returnType): void
     {
         if (in_array($returnType, config('nepali-calendar.return_types'))) {
@@ -81,7 +81,7 @@ trait setCalendarConfig
      * set a lang
      * @param string $value
      * @return void
-    */
+     */
     private function setLang($lang): void
     {
         if (in_array($lang, config('nepali-calendar.langs'))) {
@@ -92,18 +92,18 @@ trait setCalendarConfig
     }
 
     /**
-     * set a dateSeperator
+     * set a dateSeparator
      * @return void
-    */
-    private function setDateSeperator(): void
+     */
+    private function setDateSeparator(): void
     {
-        $this->dateSeperator = config('nepali-calendar.date_seperators')[$this->dateFormat];
+        $this->dateSeparator = config('nepali-calendar.date_separators')[$this->dateFormat];
     }
 
     /**
      * check is calendar type is supported
      * @return void
-    */
+     */
     private function calendarType($calendarType)
     {
         if (in_array($calendarType, config('nepali-calendar.calendar_types'))) {
@@ -114,7 +114,7 @@ trait setCalendarConfig
 
     /**
      * check date format
-    */
+     */
     private function checkDateFormat($dateFormat)
     {
         if (in_array($dateFormat, config('nepali-calendar.date_formats'))) {
@@ -124,12 +124,12 @@ trait setCalendarConfig
     }
 
     /**
-     * get a dateSeperator
+     * get a dateSeparator
      * @param string
      * @return string
-    */
-    private function getDateSeperator($dateFormat): string
+     */
+    private function getDateSeparator($dateFormat): string
     {
-        return config('nepali-calendar.date_seperators')[$dateFormat];
+        return config('nepali-calendar.date_separators')[$dateFormat];
     }
 }

@@ -1,0 +1,1 @@
+{"version":1,"defects":{"NepaliCalendarTest::compareBsDates":3},"times":{"NepaliCalendarTest::daysCountBetweenIncludingBsDates":0.088,"NepaliCalendarTest::compareBsDates":0.014,"NepaliCalendarTest::AD2BS":0.007,"NepaliCalendarTest::adDateExists":0.006}}
