@@ -16,7 +16,7 @@ trait setCalendarConfig
      * load a initial config from np_calendar config file
      * @return void
      */
-    private function setIntitalConfig(): void
+    private function setInitialConfig(): void
     {
         $this->dateFormat = config('nepali-calendar.date_format');
         $this->returnType = config('nepali-calendar.return_type');

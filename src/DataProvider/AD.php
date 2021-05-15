@@ -6,7 +6,7 @@ class AD
 {
     public const AD_MONTH_NAMES = [
         'LONG' => [
-            1 => 'Janaury',
+            1 => 'January',
             2 => 'February',
             3 => 'March',
             4 => 'April',
@@ -67,8 +67,8 @@ class AD
      * @param int $monthInNumber [ 1 to 12 ]
      * @param string $type [ LONG, ABBREVIATED ]
      * @return string
-    */
-   public static function getMonthName($monthInNumber, $type): string
+     */
+    public static function getMonthName($monthInNumber, $type): string
     {
         return self::AD_MONTH_NAMES[$type][$monthInNumber];
     }
@@ -78,11 +78,9 @@ class AD
      * @param int $weekDayInNumber [ 1 to 7 ]
      * @param string $type [ LONG, ABBREVIATED ]
      * @return string
-    */
-   public static function getDayNameOfWeek($weekDayInNumber, $type): string
+     */
+    public static function getDayNameOfWeek($weekDayInNumber, $type): string
     {
         return self::AD_DAY_NAMES_OF_WEEK[$type][$weekDayInNumber];
     }
-
-
 }
