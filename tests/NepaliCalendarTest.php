@@ -23,17 +23,45 @@ class NepaliCalendarTest extends TestCase
     }
 
     /** @test */
+    public function BS2AD()
+    {
+        $adDate = NepaliCalendar::BS2AD('2099-12-10');
+        $this->assertTrue(!!$adDate, 'ad 2 bs');
+    }
+
+    /** @test */
     public function AD2BS()
     {
         $adDate = NepaliCalendar::AD2BS('2020-12-10');
-        $this->assertTrue(true, 'ad 2 bs');
+        $this->assertTrue(!!$adDate, 'ad 2 bs');
     }
 
     /** @test */
     public function adDateExists()
     {
-        NepaliCalendar::adDateExists('202020');
-        $this->assertTrue(true, 'ad date exists');
+        $ad = NepaliCalendar::adDateExists('2034-09-12');
+        $this->assertTrue($ad, 'AD date do exists');
+    }
+
+    /** @test */
+    public function adDateDontExists()
+    {
+        $ad = NepaliCalendar::adDateExists('2034-09-33');
+        $this->assertTrue($ad === false, 'AD date don\'t exists');
+    }
+
+    /** @test */
+    public function bsDateExists()
+    {
+        $bs = NepaliCalendar::bsDateExists('2051-10-10');
+        $this->assertTrue($bs, 'BS date do exists');
+    }
+
+    /** @test */
+    public function bsDateDontExists()
+    {
+        $bs = NepaliCalendar::bsDateExists('2099-12-32');
+        $this->assertTrue($bs === false, 'BS date don\'t exists');
     }
 
 
