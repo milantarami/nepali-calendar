@@ -454,7 +454,7 @@ class CalendarFunction
                 return $time1 !== $time2;
                 break;
             default:
-                throw new NepaliCalendarException('Copmarison Operator not supported !');
+                throw new NepaliCalendarException('Comparison Operator not supported !');
         }
     }
 }
