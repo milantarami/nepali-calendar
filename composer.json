@@ -1,31 +1,30 @@
 {
-    "name": "milantarami/nepali-calendar",
-    "description": "ok",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "milantarami",
-            "email": "milantarami.dev@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {},
-    "require-dev": {
-        "orchestra/testbench": "^4.0",
-        "phpunit/phpunit": "^9.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "MilanTarami\\NepaliCalendar\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "MilanTarami\\NepaliCalendar\\NepaliCalendarServiceProvider"
-            ]
-        }
+  "name": "milantarami/nepali-calendar",
+  "description": "Date converter with more features ( adding months to date, adding days to date , get current date etc. ) . Supports BS and AD date type.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "milantarami",
+      "email": "milantarami.dev@gmail.com"
     }
-
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "require-dev": {
+    "orchestra/testbench": "^4.0",
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MilanTarami\\NepaliCalendar\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MilanTarami\\NepaliCalendar\\NepaliCalendarServiceProvider"
+      ]
+    }
+  }
 }
