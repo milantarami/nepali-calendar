@@ -475,8 +475,6 @@ class CalendarFunction
             $bsYear = $dateBsArr[0];
         }
 
-        echo $bsMonth, $bsYear;
-
         $monthData = self::getBsYearMonthData($bsYear);
 
         if (empty($monthData)) {
