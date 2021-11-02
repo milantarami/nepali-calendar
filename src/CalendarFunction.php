@@ -2,6 +2,7 @@
 
 namespace MilanTarami\NepaliCalendar;
 
+use Exception;
 use MilanTarami\NepaliCalendar\DataProvider\AD;
 use MilanTarami\NepaliCalendar\DataProvider\BS;
 use MilanTarami\NepaliCalendar\CalendarMessage;
@@ -456,5 +457,37 @@ class CalendarFunction
             default:
                 throw new NepaliCalendarException('Comparison Operator not supported !');
         }
+    }
+
+    /**
+     * get bs month start , end dates
+     *
+     */
+    public static function getBsMonthStartEndDates(int $bsMonth = null, int $bsYear = null): array
+    {
+        $dateBsArr = self::getDateInArray(self::adToBs(date('Y-m-d'), 'YYYY-MM-DD', '-')['BS_DATE'], 'YYYY-MM-DD', '-');
+
+        if (empty($bsMonth)) {
+            $bsMonth = $dateBsArr[1];
+        }
+
+        if (empty($bsYear)) {
+            $bsYear = $dateBsArr[0];
+        }
+
+        echo $bsMonth, $bsYear;
+
+        $monthData = self::getBsYearMonthData($bsYear);
+
+        if (empty($monthData)) {
+            throw new Exception('Date is not supported');
+        }
+
+        $maxDayInMonth = $monthData[$bsMonth];
+
+        return [
+            'start_date_of_month' => self::dateResponseInFormat($bsYear, $bsMonth, 1, 'YYYY-MM-DD', '-'),
+            'end_date_of_month' => self::dateResponseInFormat($bsYear, $bsMonth, $maxDayInMonth, 'YYYY-MM-DD', '-')
+        ];
     }
 }

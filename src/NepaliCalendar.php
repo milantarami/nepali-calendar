@@ -281,4 +281,13 @@ class NepaliCalendar implements NepaliCalendarInterface
         $date2 = $this->BS2AD($date2);
         return CalendarFunction::compareAdDates($date1, $date2, $comparisonOperator);
     }
+
+    /**
+     * get bs month end dates
+     * ['start_date_of_month' => , 'end_date_of_month' =>  ]
+     */
+    public function bsMonthStartEndDates(int $mm = null, int $yyyy = null): array
+    {
+        return CalendarFunction::getBsMonthStartEndDates($mm, $yyyy);
+    }
 }

@@ -64,6 +64,14 @@ class NepaliCalendarTest extends TestCase
         $this->assertTrue($bs === false, 'BS date don\'t exists');
     }
 
+    /** @test */
+    public function getBsDateStartEndDates()
+    {
+        $bs = NepaliCalendar::bsMonthStartEndDates(1, 2079);
+
+        $this->assertTrue(gettype($bs) == 'array', 'Generated bs start & end dates');
+    }
+
 
     // When testing inside of a Laravel installation, this is not needed
     protected function getPackageProviders($app)
