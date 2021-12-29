@@ -290,4 +290,10 @@ class NepaliCalendar implements NepaliCalendarInterface
     {
         return CalendarFunction::getBsMonthStartEndDates($mm, $yyyy);
     }
+
+
+    public static function getFiscalYearQuarterStartEndBsDates(int $startYear, int $endYear, $quarter = null): array
+    {
+        return CalendarFunction::getFiscalYearQuarterStartEndBsDates($startYear, $endYear, $quarter);
+    }
 }

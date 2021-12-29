@@ -488,4 +488,39 @@ class CalendarFunction
             'end_date_of_month' => self::dateResponseInFormat($bsYear, $bsMonth, $maxDayInMonth, 'YYYY-MM-DD', '-')
         ];
     }
+
+    public static function getFiscalYearQuarterStartEndBsDates(int $startYear, int $endYear, $quarter = null)
+    {
+
+        $toReturn = [];
+
+        if ($quarter > 4)
+            throw new NepaliCalendarException('Quarter is not supported');
+
+        if ($quarter == null || $quarter == 1)
+            $toReturn['first_quarter'] = [
+                'start_date' => self::getBsMonthStartEndDates(4, $startYear)['start_date_of_month'],
+                'end_date' => self::getBsMonthStartEndDates(6, $startYear)['end_date_of_month']
+            ];
+
+        if ($quarter == null || $quarter == 2)
+            $toReturn['second_quarter'] = [
+                'start_date' => self::getBsMonthStartEndDates(7, $startYear)['start_date_of_month'],
+                'end_date' => self::getBsMonthStartEndDates(9, $startYear)['end_date_of_month']
+            ];
+
+        if ($quarter == null || $quarter == 3)
+            $toReturn['third_quarter'] = [
+                'start_date' => self::getBsMonthStartEndDates(10, $startYear)['start_date_of_month'],
+                'end_date' => self::getBsMonthStartEndDates(12, $startYear)['end_date_of_month']
+            ];
+
+        if ($quarter == null || $quarter == 4)
+            $toReturn['fourth_quarter'] = [
+                'start_date' => self::getBsMonthStartEndDates(1, $endYear)['start_date_of_month'],
+                'end_date' => self::getBsMonthStartEndDates(3, $endYear)['end_date_of_month']
+            ];
+
+        return $toReturn;
+    }
 }

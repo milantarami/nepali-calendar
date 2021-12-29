@@ -73,6 +73,33 @@ class NepaliCalendarTest extends TestCase
     }
 
 
+    /** @test */
+    public function getFiscalYearQuarterStartEndDates()
+    {
+        $output = NepaliCalendar::getFiscalYearQuarterStartEndBsDates(2078, 2079);
+
+        $expectedOutput = [
+            "first_quarter" => [
+                "start_date" => "2078-04-01",
+                "end_date" => "2078-06-31"
+            ],
+            "second_quarter" => [
+                "start_date" => "2078-07-01",
+                "end_date" => "2078-09-30"
+            ],
+            "third_quarter" => [
+                "start_date" => "2078-10-01",
+                "end_date" => "2078-12-30"
+            ],
+            "fourth_quarter" =>  [
+                "start_date" => "2079-01-01",
+                "end_date" => "2079-03-32"
+            ],
+        ];
+
+        $this->assertTrue(serialize($output) == serialize($expectedOutput), 'Generated bs start & end dates');
+    }
+
     // When testing inside of a Laravel installation, this is not needed
     protected function getPackageProviders($app)
     {
