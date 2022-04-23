@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase;
 
 class CustomBaldeDirectiveTest extends TestCase
 {
-
     /** @test */
     public function testDateBSBladeDirective()
     {
@@ -27,7 +26,7 @@ class CustomBaldeDirectiveTest extends TestCase
     /** @test */
     public function testBS2ADBladeDirective()
     {
-        $expected =  '<?php echo \MilanTarami\NepaliCalendar\Facades\NepaliCalendar::BS2AD(); ?>';
+        $expected = '<?php echo \MilanTarami\NepaliCalendar\Facades\NepaliCalendar::BS2AD(); ?>';
         $actual = Blade::compileString('@BS2AD');
         $this->assertEquals($expected, $actual);
     }

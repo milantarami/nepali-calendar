@@ -2,12 +2,10 @@
 
 namespace MilanTarami\NepaliCalendar;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
-use MilanTarami\NepaliCalendar\NepaliCalendar;
-
+use Illuminate\Support\ServiceProvider;
 
 class NepaliCalendarServiceProvider extends ServiceProvider
 {
@@ -18,8 +16,8 @@ class NepaliCalendarServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . './../config/nepali-calendar.php', 'nepali-calendar');
-        $this->mergeConfigFrom(__DIR__ . './../resources/lang/en/nepali-calendar.php', 'nepali-calendar');
+        $this->mergeConfigFrom(__DIR__.'./../config/nepali-calendar.php', 'nepali-calendar');
+        $this->mergeConfigFrom(__DIR__.'./../resources/lang/en/nepali-calendar.php', 'nepali-calendar');
     }
 
     /**
@@ -29,9 +27,9 @@ class NepaliCalendarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nepali-calendar');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nepali-calendar');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'nepali-calendar');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nepali-calendar');
 
         $this->app->bind(
             'MilanTarami\NepaliCalendar\Contracts\NepaliCalendarInterface',
@@ -49,7 +47,6 @@ class NepaliCalendarServiceProvider extends ServiceProvider
         $this->configurePublishing();
     }
 
-
     /**
      * Configure publishing for the package.
      *
@@ -58,19 +55,17 @@ class NepaliCalendarServiceProvider extends ServiceProvider
     protected function configurePublishing()
     {
         if ($this->app->runningInConsole()) {
-
-            $this->publishes([__DIR__ . './../config/nepali-calendar.php' => config_path('nepali-calendar.php'),], 'nepali-calendar-config');
+            $this->publishes([__DIR__.'./../config/nepali-calendar.php' => config_path('nepali-calendar.php')], 'nepali-calendar-config');
 
             $this->publishes([
-                __DIR__ . '/../resources/lang' => resource_path('lang/'),
+                __DIR__.'/../resources/lang' => resource_path('lang/'),
             ], 'nepali-calendar-validation');
 
             $this->publishes([
-                __DIR__ . '/../resources/views' => resource_path('views/vendor/nepali-calendar'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/nepali-calendar'),
             ], 'nepali-calendar-views');
         }
     }
-
 
     /**
      * Configure custom blade directives.
@@ -79,9 +74,8 @@ class NepaliCalendarServiceProvider extends ServiceProvider
      */
     public function configureCustomBladeDirectives()
     {
-
         Blade::directive('dateBS', function () {
-            return "<?php echo NepaliCalendar::today(); ?>";
+            return '<?php echo NepaliCalendar::today(); ?>';
         });
 
         Blade::directive('AD2BS', function ($dateAD) {
@@ -93,7 +87,6 @@ class NepaliCalendarServiceProvider extends ServiceProvider
         });
     }
 
-
     /**
      * Configure custom validation rules for the package.
      *
@@ -101,12 +94,12 @@ class NepaliCalendarServiceProvider extends ServiceProvider
      */
     public function configureCustomValidationRules()
     {
-
         Validator::extend(
-            "date_bs",
+            'date_bs',
             function ($attribute, $value, $params, $validator) {
                 try {
                     $nepaliCalendar = new NepaliCalendar();
+
                     return $nepaliCalendar->bsDateExists($value);
                 } catch (\Exception $e) {
                     return false;

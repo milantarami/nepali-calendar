@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase;
 
 class NepaliCalendarTest extends TestCase
 {
-
     /** @test */
     public function daysCountBetweenIncludingBsDates()
     {
@@ -26,14 +25,14 @@ class NepaliCalendarTest extends TestCase
     public function BS2AD()
     {
         $adDate = NepaliCalendar::BS2AD('2099-12-10');
-        $this->assertTrue(!!$adDate, 'ad 2 bs');
+        $this->assertTrue((bool) $adDate, 'ad 2 bs');
     }
 
     /** @test */
     public function AD2BS()
     {
         $adDate = NepaliCalendar::AD2BS('2020-12-10');
-        $this->assertTrue(!!$adDate, 'ad 2 bs');
+        $this->assertTrue((bool) $adDate, 'ad 2 bs');
     }
 
     /** @test */
@@ -72,12 +71,11 @@ class NepaliCalendarTest extends TestCase
         $this->assertTrue(gettype($bs) == 'array', 'Generated bs start & end dates');
     }
 
-
     // When testing inside of a Laravel installation, this is not needed
     protected function getPackageProviders($app)
     {
         return [
-            'MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider'
+            'MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider',
         ];
     }
     // // When testing inside of a Laravel installation, this is not needed
