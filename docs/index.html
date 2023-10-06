@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
-  <title>Nepali Calendar</title>
-</head>
-<body>
-  <div data-app id="app"></div>
-  <script>
-    window.$docsify = {
-      name: '',
-      repo: '',
-    //   loadSidebar: true,
-      alias: {
-    //   '/.*/_sidebar.md': '/_sidebar.md'
-    }
-    }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+    <title>Nepali Calendar</title>
+  </head>
+  <body>
+    <div data-app id="app"></div>
+    <script>
+      window.$docsify = {
+        name: "",
+        repo: "",
+        //   loadSidebar: true,
+        alias: {
+          //   '/.*/_sidebar.md': '/_sidebar.md'
+        },
+        copyCode: {
+          buttonText: "Copy to clipboard",
+          errorText: "Error",
+          successText: "Copied",
+        },
+      };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <!-- Latest v2.x.x -->
+    <script src="https://unpkg.com/docsify-copy-code@2"></script>
+  </body>
 </html>
