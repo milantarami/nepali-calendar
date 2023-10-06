@@ -488,4 +488,30 @@ class CalendarFunction
             'end_date_of_month' => self::dateResponseInFormat($bsYear, $bsMonth, $maxDayInMonth, 'YYYY-MM-DD', '-')
         ];
     }
+
+    /**
+     * convert eng number to nepali number
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function enToNp($string)
+    {
+        $replace_array = array(
+            '0' => '०',
+            '1' => '१',
+            '2' => '२',
+            '3' => '३',
+            '4' => '४',
+            '5' => '५',
+            '6' => '६',
+            '7' => '७',
+            '8' => '८',
+            '9' => '९',
+        );
+
+        $output_string = str_replace(array_keys($replace_array), array_values($replace_array), $string);
+
+        return $output_string;
+    }
 }
