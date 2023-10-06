@@ -59,15 +59,11 @@ class NepaliCalendarServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
 
-            $this->publishes([__DIR__ . './../config/nepali-calendar.php' => config_path('nepali-calendar.php'),], 'nepali-calendar-config');
+            $this->publishes([__DIR__ . '/../config/nepali-calendar.php' => config_path('nepali-calendar.php'),], 'nepali-calendar-config');
 
             $this->publishes([
                 __DIR__ . '/../resources/lang' => resource_path('lang/'),
             ], 'nepali-calendar-validation');
-
-            $this->publishes([
-                __DIR__ . '/../resources/views' => resource_path('views/vendor/nepali-calendar'),
-            ], 'nepali-calendar-views');
         }
     }
 
