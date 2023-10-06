@@ -1,3 +1,7 @@
+## v1.4.0
+- fix error during publishing config & translation file
+- update docs with more examples to explore
+
 ## v1.3.0
 > Features added
 ### Blade Directive
