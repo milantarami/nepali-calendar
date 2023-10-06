@@ -18,8 +18,8 @@ class NepaliCalendarServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . './../config/nepali-calendar.php', 'nepali-calendar');
-        $this->mergeConfigFrom(__DIR__ . './../resources/lang/en/nepali-calendar.php', 'nepali-calendar');
+        $this->mergeConfigFrom(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'nepali-calendar.php', 'nepali-calendar');
+        $this->mergeConfigFrom(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR . 'en' . DIRECTORY_SEPARATOR . 'nepali-calendar.php', 'nepali-calendar');
     }
 
     /**
@@ -29,9 +29,9 @@ class NepaliCalendarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nepali-calendar');
+        $this->loadViewsFrom(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views', 'nepali-calendar');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'nepali-calendar');
+        $this->loadTranslationsFrom(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'lang', 'nepali-calendar');
 
         $this->app->bind(
             'MilanTarami\NepaliCalendar\Contracts\NepaliCalendarInterface',
@@ -59,10 +59,10 @@ class NepaliCalendarServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
 
-            $this->publishes([__DIR__ . '/../config/nepali-calendar.php' => config_path('nepali-calendar.php'),], 'nepali-calendar-config');
+            $this->publishes([__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'nepali-calendar.php' => config_path('nepali-calendar.php'),], 'nepali-calendar-config');
 
             $this->publishes([
-                __DIR__ . '/../resources/lang' => resource_path('lang/'),
+                __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'lang' => resource_path('lang')
             ], 'nepali-calendar-validation');
         }
     }
