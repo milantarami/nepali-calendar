@@ -17,7 +17,7 @@ return [
     /**
      * DEFAULT lang
      */
-    'lang' => 'np',
+    'lang' => 'en',
 
     /**
      * Supported date formats
