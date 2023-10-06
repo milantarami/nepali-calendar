@@ -174,6 +174,8 @@ class NepaliCalendar implements NepaliCalendarInterface
     {
         $this->setUserConfig($config);
         $data = CalendarFunction::adToBs($date, $this->dateFormat, $this->dateSeparator);
+        if ($this->lang === 'np')
+            $data['BS_DATE'] = CalendarFunction::enToNp($data['BS_DATE']);
         return $this->returnType === 'array' ? $data : $data['BS_DATE'];
     }
 
