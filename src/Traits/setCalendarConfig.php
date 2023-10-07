@@ -13,7 +13,8 @@ trait setCalendarConfig
     protected $dateSeparator;
 
     /**
-     * load a initial config from np_calendar config file
+     * load a initial config from np_calendar config file.
+     *
      * @return void
      */
     private function setInitialConfig(): void
@@ -25,8 +26,9 @@ trait setCalendarConfig
     }
 
     /**
-     * Set config from user input
-     * @param array $config
+     * Set config from user input.
+     *
+     * @param  array  $config
      * @return void
      */
     private function setUserConfig($config = []): void
@@ -48,8 +50,9 @@ trait setCalendarConfig
     }
 
     /**
-     * set a date format
-     * @param string $value
+     * set a date format.
+     *
+     * @param  string  $value
      * @return void
      */
     private function setDateFormat($dateFormat): void
@@ -61,10 +64,10 @@ trait setCalendarConfig
         }
     }
 
-
     /**
-     * set a return type
-     * @param string $value
+     * set a return type.
+     *
+     * @param  string  $value
      * @return void
      */
     private function setReturnType($returnType): void
@@ -76,10 +79,10 @@ trait setCalendarConfig
         }
     }
 
-
     /**
-     * set a lang
-     * @param string $value
+     * set a lang.
+     *
+     * @param  string  $value
      * @return void
      */
     private function setLang($lang): void
@@ -92,7 +95,8 @@ trait setCalendarConfig
     }
 
     /**
-     * set a dateSeparator
+     * set a dateSeparator.
+     *
      * @return void
      */
     private function setDateSeparator(): void
@@ -101,7 +105,8 @@ trait setCalendarConfig
     }
 
     /**
-     * check is calendar type is supported
+     * check is calendar type is supported.
+     *
      * @return void
      */
     private function calendarType($calendarType)
@@ -113,7 +118,7 @@ trait setCalendarConfig
     }
 
     /**
-     * check date format
+     * check date format.
      */
     private function checkDateFormat($dateFormat)
     {
@@ -124,7 +129,8 @@ trait setCalendarConfig
     }
 
     /**
-     * get a dateSeparator
+     * get a dateSeparator.
+     *
      * @param string
      * @return string
      */

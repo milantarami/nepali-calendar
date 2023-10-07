@@ -61,11 +61,11 @@ class AD
         'leap_year' => [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     ];
 
-
     /**
-     * get a english month name
-     * @param int $monthInNumber [ 1 to 12 ]
-     * @param string $type [ LONG, ABBREVIATED ]
+     * get a english month name.
+     *
+     * @param  int  $monthInNumber  [ 1 to 12 ]
+     * @param  string  $type  [ LONG, ABBREVIATED ]
      * @return string
      */
     public static function getMonthName($monthInNumber, $type): string
@@ -74,9 +74,10 @@ class AD
     }
 
     /**
-     * get day neme of week
-     * @param int $weekDayInNumber [ 1 to 7 ]
-     * @param string $type [ LONG, ABBREVIATED ]
+     * get day neme of week.
+     *
+     * @param  int  $weekDayInNumber  [ 1 to 7 ]
+     * @param  string  $type  [ LONG, ABBREVIATED ]
      * @return string
      */
     public static function getDayNameOfWeek($weekDayInNumber, $type): string
