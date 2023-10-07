@@ -3,24 +3,24 @@
 return [
 
     /**
-     * DEFAULT date format
+     * DEFAULT date format.
      */
     'date_format' => 'YYYY-MM-DD',
 
     /**
      * DEFAULT return type
      * return types
-     * [ date, string, array ]
+     * [ date, string, array ].
      */
     'return_type' => 'string',
 
     /**
-     * DEFAULT lang
+     * DEFAULT lang.
      */
     'lang' => 'en',
 
     /**
-     * Supported date formats
+     * Supported date formats.
      */
     'date_formats' => [
         'YYYY-MM-DD',
@@ -32,7 +32,7 @@ return [
     ],
 
     /**
-     * Date Separators
+     * Date Separators.
      */
     'date_separators' => [
         'YYYY-MM-DD' => '-',
@@ -44,7 +44,7 @@ return [
     ],
 
     /**
-     * Supported Languages
+     * Supported Languages.
      */
     'langs' => [
         'np',
@@ -52,7 +52,7 @@ return [
     ],
 
     /**
-     * Supported return types
+     * Supported return types.
      */
     'return_types' => [
         'array',
@@ -60,12 +60,11 @@ return [
     ],
 
     /**
-     * Calendar Types
+     * Calendar Types.
      */
     'calendar_types' => [
         'BS',
         'AD'
     ]
-
 
 ];
