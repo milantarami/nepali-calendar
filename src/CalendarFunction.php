@@ -5,7 +5,6 @@ namespace MilanTarami\NepaliCalendar;
 use Exception;
 use MilanTarami\NepaliCalendar\DataProvider\AD;
 use MilanTarami\NepaliCalendar\DataProvider\BS;
-use MilanTarami\NepaliCalendar\CalendarMessage;
 use MilanTarami\NepaliCalendar\Exceptions\NepaliCalendarException;
 
 class CalendarFunction
@@ -16,10 +15,11 @@ class CalendarFunction
     const MAX_BS_YEAR = 2099;
 
     /**
-     * Get a date in array format
-     * @param string $date
-     * @param string $dateFormat
-     * @param string $dateSeperator
+     * Get a date in array format.
+     *
+     * @param  string  $date
+     * @param  string  $dateFormat
+     * @param  string  $dateSeperator
      * @return array ['YYYY', 'MM', 'DD']
      */
     public static function getDateInArray($date, $dateFormat, $dateSeperator)
@@ -31,16 +31,18 @@ class CalendarFunction
             $dateFormatSegregated[1] => (int) $dateSegregated[1],
             $dateFormatSegregated[2] => (int) $dateSegregated[2]
         ];
+
         return [$dateInArray['YYYY'], $dateInArray['MM'], $dateInArray['DD']];
     }
 
     /**
-     * get a date in given format
-     * @param int $YYYY
-     * @param int $MM
-     * @param int $DD
-     * @param string $dateFormat
-     * @param string $dateSeperator
+     * get a date in given format.
+     *
+     * @param  int  $YYYY
+     * @param  int  $MM
+     * @param  int  $DD
+     * @param  string  $dateFormat
+     * @param  string  $dateSeperator
      * @return string
      */
     public static function dateResponseInFormat($YYYY, $MM, $DD, $dateFormat, $dateSeperator)
@@ -51,14 +53,16 @@ class CalendarFunction
             'DD' => self::padZero($DD)
         ];
         $dateFormatSegregated = explode($dateSeperator, $dateFormat);
-        return $dateInArray[$dateFormatSegregated[0]] . $dateSeperator .
-            $dateInArray[$dateFormatSegregated[1]] . $dateSeperator .
+
+        return $dateInArray[$dateFormatSegregated[0]].$dateSeperator.
+            $dateInArray[$dateFormatSegregated[1]].$dateSeperator.
             $dateInArray[$dateFormatSegregated[2]];
     }
 
     /**
-     * pad zero before number if less than 10
-     * @param int $number
+     * pad zero before number if less than 10.
+     *
+     * @param  int  $number
      * @return string
      */
     private static function padZero($number)
@@ -66,14 +70,16 @@ class CalendarFunction
         if ($number < 10) {
             return (string) str_pad($number, 2, '0', STR_PAD_LEFT);
         }
+
         return (string) $number;
     }
 
     /**
      * get BS year month data
-     * if ($returnType = NULL) than if bs year month data doesn't exists than it will return NULL
-     * @param int $year
-     * @param NULL
+     * if ($returnType = NULL) than if bs year month data doesn't exists than it will return NULL.
+     *
+     * @param  int  $year
+     * @param null
      * @return array
      */
     public static function getBsYearMonthData($year)
@@ -85,19 +91,21 @@ class CalendarFunction
                 }
             }
         }
+
         return null;
     }
 
     /**
-     * check is bs date is valid
-     * @param date $bsDate
-     * @param string $dateFormat
-     * @param string $dateSeperator
+     * check is bs date is valid.
+     *
+     * @param  date  $bsDate
+     * @param  string  $dateFormat
+     * @param  string  $dateSeperator
      */
     public static function isValidBsDate($date, $dateFormat, $dateSeperator): bool
     {
         if (count(explode($dateSeperator, $date)) === 3) {
-            list($yyyy, $mm, $dd) = self::getDateInArray($date, $dateFormat, $dateSeperator);
+            [$yyyy, $mm, $dd] = self::getDateInArray($date, $dateFormat, $dateSeperator);
             $bsYearData = self::getBsYearMonthData($yyyy);
             if ($bsYearData !== null) {
                 if ($mm > 0 && $mm < 13 && $dd > 0) {
@@ -107,19 +115,21 @@ class CalendarFunction
                 }
             }
         }
+
         return false;
     }
 
     /**
-     * check is ad date is valid
-     * @param date $bsDate
-     * @param string $dateFormat
-     * @param string $dateSeperator
+     * check is ad date is valid.
+     *
+     * @param  date  $bsDate
+     * @param  string  $dateFormat
+     * @param  string  $dateSeperator
      */
     public static function isValidAdDate($date, $dateFormat, $dateSeperator)
     {
         if (count(explode($dateSeperator, $date)) === 3) {
-            list($yyyy, $mm, $dd) = self::getDateInArray($date, $dateFormat, $dateSeperator);
+            [$yyyy, $mm, $dd] = self::getDateInArray($date, $dateFormat, $dateSeperator);
             if ($yyyy >= self::MIN_AD_YEAR && $yyyy <= self::MAX_AD_YEAR) {
                 if ($mm > 0 && $mm < 13 && $dd > 0) {
                     if (self::isAdYearLeapYear($yyyy)) {
@@ -133,16 +143,16 @@ class CalendarFunction
                 }
             }
         }
+
         return false;
     }
 
-
-
     /**
-     * Check if date is with in nepali data range
-     * @param int $yy
-     * @param int $mm
-     * @param int $dd
+     * Check if date is with in nepali data range.
+     *
+     * @param  int  $yy
+     * @param  int  $mm
+     * @param  int  $dd
      * @return bool
      */
     private static function isBsDateIsInRange($yy, $mm, $dd)
@@ -158,15 +168,16 @@ class CalendarFunction
         if ($dd < 1 || $dd > 32) {
             throw new NepaliCalendarException(CalendarMessage::E_BS_BAD_DAY_VALUE);
         }
+
         return true;
     }
 
     /**
-     * Check if date range is in english
+     * Check if date range is in english.
      *
-     * @param int $yy
-     * @param int $mm
-     * @param int $dd
+     * @param  int  $yy
+     * @param  int  $mm
+     * @param  int  $dd
      * @return bool
      */
     private static function isAdDateInRange($yy, $mm, $dd)
@@ -182,13 +193,14 @@ class CalendarFunction
         if ($dd < 1 || $dd > 31) {
             throw new NepaliCalendarException(CalendarMessage::E_AD_BAD_DAY_VALUE);
         }
+
         return true;
     }
 
-
     /**
-     * Check whether AD Year is Leap Year
-     * @param int $year
+     * Check whether AD Year is Leap Year.
+     *
+     * @param  int  $year
      * @return bool
      */
     private static function isAdYearLeapYear($year): bool
@@ -208,39 +220,38 @@ class CalendarFunction
         }
     }
 
-
     /**
      * currently can only calculate the date between AD 1944-2033...
      *
-     * @param string $adDate
-     * @param string $dateFormat
-     * @param string $dateSeperator
+     * @param  string  $adDate
+     * @param  string  $dateFormat
+     * @param  string  $dateSeperator
      * @return array
      */
     public static function adToBs($adDate, $dateFormat, $dateSeperator)
     {
-        list($yy, $mm, $dd) = self::getDateInArray($adDate, $dateFormat, $dateSeperator);
+        [$yy, $mm, $dd] = self::getDateInArray($adDate, $dateFormat, $dateSeperator);
 
         if (self::isAdDateInRange($yy, $mm, $dd)) {
             // Month data.
-            $month  = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+            $month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
             // Month for leap year
-            $lmonth = array(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+            $lmonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-            $def_eyy     = 1944;    // initial english date.
-            $def_nyy     = 2000;
-            $def_nmm     = 9;
-            $def_ndd     = 17 - 1;    // inital nepali date.
+            $def_eyy = 1944;    // initial english date.
+            $def_nyy = 2000;
+            $def_nmm = 9;
+            $def_ndd = 17 - 1;    // inital nepali date.
             $total_eDays = 0;
             $total_nDays = 0;
-            $a           = 0;
-            $day         = 7 - 1;
-            $m           = 0;
-            $y           = 0;
-            $i           = 0;
-            $j           = 0;
-            $numDay      = 0;
+            $a = 0;
+            $day = 7 - 1;
+            $m = 0;
+            $y = 0;
+            $i = 0;
+            $j = 0;
+            $numDay = 0;
 
             // Count total no. of days in-terms year
             for ($i = 0; $i < ($yy - $def_eyy); $i++) { //total days for month calculation...(english)
@@ -267,12 +278,11 @@ class CalendarFunction
             // Count total no. of days in-terms of date
             $total_eDays += $dd;
 
-
-            $i           = 0;
-            $j           = $def_nmm;
+            $i = 0;
+            $j = $def_nmm;
             $total_nDays = $def_ndd;
-            $m           = $def_nmm;
-            $y           = $def_nyy;
+            $m = $def_nmm;
+            $y = $def_nyy;
 
             // Count nepali date from array
             while ($total_eDays != 0) {
@@ -320,41 +330,41 @@ class CalendarFunction
             $_nep_date['week_day']['roman']['abbr'] = BS::getDayNameOfWeekInRoman($day, 'ABBREVIATED');
             $_nep_date['week_day']['en']['long'] = BS::getDayNameOfWeekInEnglish($day, 'LONG');
             $_nep_date['week_day']['en']['abbr'] = BS::getDayNameOfWeekInEnglish($day, 'ABBREVIATED');
+
             return $_nep_date;
         }
     }
 
-
     /**
-     * Currently can only calculate the date between BS 2000-2089
+     * Currently can only calculate the date between BS 2000-2089.
      *
-     * @param string $bsDate
-     * @param string $dateFormat
-     * @param string $dateSeperator
+     * @param  string  $bsDate
+     * @param  string  $dateFormat
+     * @param  string  $dateSeperator
      * @return array
      */
     public static function bsToAd($bsDate, $dateFormat, $dateSeperator)
     {
-        list($yy, $mm, $dd) = self::getDateInArray($bsDate, $dateFormat, $dateSeperator);
+        [$yy, $mm, $dd] = self::getDateInArray($bsDate, $dateFormat, $dateSeperator);
 
-        $def_eyy     = 1943;
-        $def_emm     = 4;
-        $def_edd     = 14 - 1;    // initial english date.
-        $def_nyy     = 2000;
-        $def_nmm     = 1;
-        $def_ndd     = 1;        // iniital equivalent nepali date.
+        $def_eyy = 1943;
+        $def_emm = 4;
+        $def_edd = 14 - 1;    // initial english date.
+        $def_nyy = 2000;
+        $def_nmm = 1;
+        $def_ndd = 1;        // iniital equivalent nepali date.
         $total_eDays = 0;
         $total_nDays = 0;
-        $a           = 0;
-        $day         = 4 - 1;
-        $m           = 0;
-        $y           = 0;
-        $i           = 0;
-        $k           = 0;
-        $numDay      = 0;
+        $a = 0;
+        $day = 4 - 1;
+        $m = 0;
+        $y = 0;
+        $i = 0;
+        $k = 0;
+        $numDay = 0;
 
-        $month  = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-        $lmonth = array(0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+        $month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        $lmonth = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
         if (self::isBsDateIsInRange($yy, $mm, $dd)) {
             // Count total days in-terms of year
@@ -375,8 +385,8 @@ class CalendarFunction
 
             // Calculation of equivalent english date...
             $total_eDays = $def_edd;
-            $m           = $def_emm;
-            $y           = $def_eyy;
+            $m = $def_emm;
+            $y = $def_eyy;
             while ($total_nDays != 0) {
                 if (self::isAdYearLeapYear($y)) {
                     $a = $lmonth[$m];
@@ -409,10 +419,10 @@ class CalendarFunction
             $_eng_date['YYYY'] = $y;
             $_eng_date['MM'] = $m;
             $_eng_date['DD'] = $total_eDays;
-            $_eng_date['day']['long']     = AD::getDayNameOfWeek($day, 'LONG');
-            $_eng_date['day']['abbr']     = AD::getDayNameOfWeek($day, 'ABBREVIATED');
-            $_eng_date['month']['long']  = AD::getMonthName($m, 'LONG');
-            $_eng_date['month']['abbr']  = AD::getMonthName($m, 'ABBREVIATED');
+            $_eng_date['day']['long'] = AD::getDayNameOfWeek($day, 'LONG');
+            $_eng_date['day']['abbr'] = AD::getDayNameOfWeek($day, 'ABBREVIATED');
+            $_eng_date['month']['long'] = AD::getMonthName($m, 'LONG');
+            $_eng_date['month']['abbr'] = AD::getMonthName($m, 'ABBREVIATED');
             // $_eng_date['week_num_day'] = $numDay;
 
             return $_eng_date;
@@ -422,7 +432,6 @@ class CalendarFunction
     public static function daysCountIncludingBsDates($fromDate, $toDate, $dateFormat, $dateSeperator)
     {
         // $daysDifference =
-
     }
 
     public static function compareAdDates($date1, $date2, $comparisonOperator)
@@ -460,8 +469,7 @@ class CalendarFunction
     }
 
     /**
-     * get bs month start , end dates
-     *
+     * get bs month start , end dates.
      */
     public static function getBsMonthStartEndDates(int $bsMonth = null, int $bsYear = null): array
     {
@@ -490,14 +498,14 @@ class CalendarFunction
     }
 
     /**
-     * convert eng number to nepali number
+     * convert eng number to nepali number.
      *
-     * @param string $string
+     * @param  string  $string
      * @return string
      */
     public static function enToNp($string)
     {
-        $replace_array = array(
+        $replace_array = [
             '0' => '०',
             '1' => '१',
             '2' => '२',
@@ -508,7 +516,7 @@ class CalendarFunction
             '7' => '७',
             '8' => '८',
             '9' => '९',
-        );
+        ];
 
         $output_string = str_replace(array_keys($replace_array), array_values($replace_array), $string);
 
