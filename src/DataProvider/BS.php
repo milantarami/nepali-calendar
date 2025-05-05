@@ -109,8 +109,6 @@ class BS
         99 => [2099, 31, 31, 32, 31, 31, 31, 30, 29, 29, 30, 30, 30],
     ];
 
-    
-
     public const MONTH_NAMES_IN_NEPALI = [
         'LONG' => [
             1 => 'वैशाख',
